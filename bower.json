@@ -1,0 +1,11 @@
+{
+  "name": "Musis",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Cyril0104/Musis",
+  "license": "MIT",
+  "dependencies": {
+        "jquery": "1.11.*",
+        "bootstrap": "3.1.*",
+        "font-awesome": "4.1.*"
+    }
+}

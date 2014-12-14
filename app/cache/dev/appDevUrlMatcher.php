@@ -127,6 +127,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // team_musis_homepage
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'team_musis_homepage');
+            }
+
+            return array (  '_controller' => 'Team\\MusisBundle\\Controller\\DefaultController::indexAction',  '_route' => 'team_musis_homepage',);
+        }
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

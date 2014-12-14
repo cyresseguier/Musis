@@ -17,6 +17,7 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
+      <parameter key="TeamMusisBundle">Team\MusisBundle\TeamMusisBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
@@ -2992,6 +2993,10 @@
       <call method="addPath">
         <argument>C:\wamp\www\Musis\vendor\doctrine\doctrine-bundle/Resources/views</argument>
         <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\Musis\src\Team\MusisBundle/Resources/views</argument>
+        <argument>TeamMusis</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\Musis\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>

@@ -6,5 +6,3 @@ Musis propose des ballades disposées sur une carte interactive. L'utilisateur c
 Le but de Musis est de faire redécouvrir la ville de Paris à travers la musique et les histoires racontées dans ces chansons. Grâce à une interface claire et intuitive l'internaute bénéficie d'une véritable expérience culturelle.
 
 Voici le code source de ce projet.
-
-Réalisé par Lauriane Colsenet, Bertrand Junqua, Sonia Laurent, Estelle Monges et Cyril Resseguier
