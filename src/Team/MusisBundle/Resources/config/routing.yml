@@ -1,0 +1,3 @@
+team_musis_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TeamMusisBundle:Default:index }
