@@ -53,6 +53,9 @@ module.exports = function(grunt) {
                         defaults: ['Gruntfile.js', 'src/Team/MusisBundle/Resources/public/js/scripts.js']
                 },
                 clean: {
+			concat: {
+				src: ['src/Team/MusisBundle/Resources/public/js/concat/output.js']
+			},
                         img: {
                                 src: ['web/built/img/**/*']
                         }
@@ -69,7 +72,7 @@ module.exports = function(grunt) {
                 uglify: {
                         ugly: {
                                 files: {
-                        		'web/built/js/scripts.min.js': ['rc/Team/MusisBundle/Resources/public/js/concat/output.js']
+                        		'web/built/js/scripts.min.js': ['src/Team/MusisBundle/Resources/public/js/concat/output.js']
         		        }
                         }
                 },
@@ -82,7 +85,7 @@ module.exports = function(grunt) {
                         },
                         scripts: {
                                 files: ['src/Team/MusisBundle/Resources/public/js/*.js'],
-                                tasks: ['clean:concat','concat','uglify'],
+                                tasks: ['jshint:defaults','clean:concat','concat','uglify'],
                                 options: {
                                         spawn: false,
                                 },
