@@ -2,10 +2,10 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "symfony/web/assets/css"
-sass_dir = "symfony/src/Musis/MainBundle/Resources/public/scss"
-images_dir = "symfony/web/assets/img"
-javascripts_dir = "symfony/web/assets/js"
+css_dir = "web/built/css"
+sass_dir = "src/Team/MusisBundle/Resources/public/scss"
+images_dir = "web/built/img"
+javascripts_dir = "web/buit/js"
 
 output_style = :expanded # :expanded or :nested or :compact or :compressed
 
