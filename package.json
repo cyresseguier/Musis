@@ -32,7 +32,11 @@
     "SASS",
     "Compass"
   ],
-  "author": "Bertrand Junqua",
+  "author": "Musis",
   "license": "GPL",
   "homepage": "http://musis.fr"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cyril0104/musis"
+  }
 }
