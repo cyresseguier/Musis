@@ -15,7 +15,12 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
-    "jshint-stylish": "^1.0.0"
+    "jshint-stylish": "^1.0.0",
+    "coffee-script": "~1.8.0",
+    "js-yaml": "~3.2.3",
+    "nopt": "~3.0.1",
+    "has-ansi": "~1.0.0",
+    "supports-color": "~1.2.0"
   },
   "scripts": {
     "test": "grunt compass"
@@ -27,7 +32,11 @@
     "SASS",
     "Compass"
   ],
-  "author": "Bertrand Junqua",
+  "author": "Musis",
   "license": "GPL",
   "homepage": "http://musis.fr"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cyril0104/musis"
+  }
 }
