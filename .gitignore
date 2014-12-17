@@ -32,6 +32,7 @@
 
 # Build data
 /build/
+/web/built/
 
 # Composer PHAR
 /composer.phar
