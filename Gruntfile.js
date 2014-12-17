@@ -46,7 +46,6 @@ module.exports = function(grunt) {
                 },
                 jshint: {
                         options: {
-                                //TODO + Ajouter JSHINT au watcher 
                                 eqnull: true,
                                 reporter: require('jshint-stylish')
                         },
@@ -54,7 +53,7 @@ module.exports = function(grunt) {
                 },
                 clean: {
 			concat: {
-				src: ['src/Team/MusisBundle/Resources/public/js/concat/output.js']
+				src: ['web/built/js/scripts.min.js']
 			},
                         img: {
                                 src: ['web/built/img/**/*']
@@ -66,16 +65,16 @@ module.exports = function(grunt) {
                         },
                         local: {
                                 src: ['src/Team/MusisBundle/Resources/public/js/**/*.js'],
-                                dest: 'src/Team/MusisBundle/Resources/public/js/concat/output.js'
+                                dest: 'web/built/js/scripts.min.js'
                         }
                 },
-                uglify: {
+                /*uglify: {
                         ugly: {
                                 files: {
                         		'web/built/js/scripts.min.js': ['src/Team/MusisBundle/Resources/public/js/concat/output.js']
         		        }
                         }
-                },
+                },*/
                 watch: {
                         livereload: {
                                 files: ['web/built/css/style.css'],
@@ -85,7 +84,7 @@ module.exports = function(grunt) {
                         },
                         scripts: {
                                 files: ['src/Team/MusisBundle/Resources/public/js/*.js'],
-                                tasks: ['jshint:defaults','clean:concat','concat','uglify'],
+                                tasks: ['jshint:defaults','clean:concat','concat'],
                                 options: {
                                         spawn: false,
                                 },
@@ -108,7 +107,7 @@ module.exports = function(grunt) {
 
         grunt.loadNpmTasks('grunt-contrib-compass');
         grunt.loadNpmTasks('grunt-contrib-concat');
-        grunt.loadNpmTasks('grunt-contrib-uglify');
+        //grunt.loadNpmTasks('grunt-contrib-uglify');
         grunt.loadNpmTasks('grunt-contrib-watch');
         grunt.loadNpmTasks('grunt-contrib-imagemin');
         grunt.loadNpmTasks('grunt-concurrent');
