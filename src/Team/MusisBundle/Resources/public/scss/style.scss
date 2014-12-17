@@ -1,25 +1,36 @@
-// Sass config file
-// (you should comment this line and move config file from vendor/knacss folder to your own folder)
-@import "_00-config";
+@import "compass/reset"; // Importation d'un reset CSS
+@import "compass/css3";
 
-// Sass base styles
-@import "_01-base";
+@import '_vars.scss';
+@import '_mixins.scss';
+@import '_typo.scss';
+@import '_forms.scss';
+@import '_pages.scss';
+@import '_misc.scss';
+@import '_skin.scss';
+@import '_slidingpanel.scss';
+@import '_player.scss';
+@import '_leaflet.scss';
 
-// Sass files : chose the ones you need
-@import "_02-helpers"; // width and spacers visually classes
-@import "_03-grids"; // grids and autogrids
-@import "_04-tables"; 
-@import "_05-forms";
-@import "_06-icons"; // UTF-8 icons
-@import "_07-flexbox";
-@import "_08-rwd"; // Responsive Web Design helpers
-@import "_09-print";
-@import "_10-booleans"; // skip links and hyphens
-@import "_11-gmaps"; // Google maps bugs fix
-@import "_12-ie"; // IE6, IE7, IE8 support
-@import "_13-styling"; // minor stylings 
-@import "_14-leaflet"; // Leaflet
+// Classes génériques
 
-.musisMap{
-	height:500px;
+.hide {
+ 	display: none;
+}
+.clear {
+	clear:both;
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+
+html {
+
+}
+
+body {
+
 }

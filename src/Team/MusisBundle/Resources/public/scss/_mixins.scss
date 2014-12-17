@@ -1,0 +1,17 @@
+// "Fonction" à appeler comme suit : @include center(30%);
+@mixin center($width) {
+	margin: 0 auto;
+	width: $width;
+}
+@mixin fontface($nom, $type) {
+	@font-face {
+        font-family: '$nom';
+    	src: font-url('#{$nom}-#{$type}-webfont.eot');
+		src: font-url('#{$nom}-#{$type}-webfont.eot?#iefix') format('embedded-opentype'),
+			font-url('#{$nom}-#{$type}-webfont.woff') format('woff'),
+        	font-url('#{$nom}-#{$type}-webfont.ttf') format('truetype'),
+	   		font-url('#{$nom}-#{$type}-webfont.svg#unica_oneregular') format('svg');
+    	font-weight: normal;
+		font-style: normal;
+	}
+}

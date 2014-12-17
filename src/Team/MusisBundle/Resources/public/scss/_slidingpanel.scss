@@ -1,0 +1,76 @@
+$menu-width:40px;
+
+#map {
+	height:100%;
+	min-height:100%;
+}
+.side-panel {
+	position:fixed;
+	right:0;
+	height:100%;
+	display:block;
+	min-height:100%;
+	width:$menu-width;
+	top:0;
+	background:rgba(255,255,255,.85);
+	@include transition(all .3s ease-in-out);
+	@include box-shadow(-5px 0 5px -2px rgba(0,0,0,.2));
+	&.unfolded {
+		width:33%;
+	}
+}
+.panel-menu {
+	text-align:center;
+	width:$menu-width;
+	@include box-sizing(border-box);
+	float:left;
+	background:#34495e;
+	height:auto;
+	min-height:100%;
+	color:#fff;
+	font-size:22px;
+	ul {
+		padding:0;
+		margin:0;
+	}
+	li {
+		display:block;
+		padding:8px 0;
+		border-top:1px solid rgba(0,0,0,.09);
+		border-bottom:1px solid rgba(255,255,255,.07);
+		&:first-child {
+			border-top:none;
+		}
+		&:last-child {
+			border-bottom:none;
+		}
+		a {
+			text-decoration:none;
+			color:#fff;
+			outline:none;
+			display:block;
+		}
+	}
+	.toggle {
+		@include transition(all .3s ease-in-out);
+	}
+	.unfolded & .toggle {
+		@include transform(rotate(-180deg));
+	}
+}
+.panel-content {
+	width:100%;
+	height:auto;
+	@include box-sizing(border-box);
+	padding:15px 20px;
+	min-height:100%;
+	max-height:100%;
+	margin-left:$menu-width;
+	@include opacity(0);
+	background:#e74c3c;
+	@include transition(all 1s ease-in-out);
+	.unfolded & {
+		@include opacity(1);
+		visibility:visible;
+	}
+}

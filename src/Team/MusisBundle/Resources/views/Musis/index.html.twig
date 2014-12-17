@@ -2,21 +2,95 @@
 
 <html>
 	<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Musis</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Musis</title>
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <link rel="stylesheet" href="built/css/style.css" />
-
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Antic+Slab' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="built/css/style.css" />
+		<script src="built/js/scripts.min.js"></script>
+		<script src="http://195.154.110.135:35729/livereload.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
   	</head>
 	<body>
-	
-		<div class="musisMap" id="map">
+		<div id="dz-root"></div>	
+		<section class="musisMap" id="map"></section>
 
+		<section style="float:right" class="side-panel">
+			<nav class="panel-menu">
+				<ul>
+					<li><a href="#_" class="toggle fa fa-angle-double-left"></a></li>
+					<li><a href="{{ url('homepage') }}" class="fa fa-home"></a></li>
+					<li><a href="#_" class="fa fa-leaf"></a></li>
+					<li><a href="#_" class="fa fa-plus"></a></li>
+					<li><a href="#_" class="fa fa-info"></a></li>
+				</ul>
+			</nav>		
+			<section class="panel-content">
+				<h2>Blop</h2>
+				<div id="controlers">
+					<input type="button" onclick="DZ.player.playAlbum(302127); return false;" value="Play Daft Punk - Discovery"/>
+					<input type="button" onclick="DZ.player.playAlbum(301775); return false;" value="Play Daft Punk - Homework"/>
+					<br/>
+					<input type="button" onclick="DZ.player.play(); return false;" value="play"/>
+					<input type="button" onclick="DZ.player.pause(); return false;" value="pause"/>
+					<input type="button" onclick="DZ.player.prev(); return false;" value="prev"/>
+					<input type="button" onclick="DZ.player.next(); return false;" value="next"/>
+					<br/>
+					<input type="button" onclick="DZ.player.setVolume(20); return false;" value="set Volume 20"/>
+					<input type="button" onclick="DZ.player.setVolume(80); return false;" value="set Volume 80"/>
+					<br/><br/><br/>
+				</div>
+				<div id="slider_seek" class="progressbarplay" style="">
+				  <div class="bar" style="width: 0%;"></div>
+				</div>
+				<script>
+					$(document).ready(function(){
+						$("#controlers input").attr('disabled', true);
+						$("#slider_seek").click(function(evt,arg){
+							var left = evt.offsetX;
+							console.log(evt.offsetX, $(this).width(), evt.offsetX/$(this).width());
+							DZ.player.seek((evt.offsetX/$(this).width()) * 100);
+						});
+					});
+					function event_listener_append() {
+						var pre = document.getElementById('event_listener');
+						var line = [];
+						for (var i = 0; i < arguments.length; i++) {
+							line.push(arguments[i]);
+						}
+						pre.innerHTML += line.join(' ') + "\n";
+					}
+					function onPlayerLoaded() {
+						$("#controlers input").attr('disabled', false);
+						event_listener_append('player_loaded');
+						DZ.Event.subscribe('current_track', function(arg){
+							event_listener_append('current_track', arg.index, arg.track.title, arg.track.album.title);
+						});
+						DZ.Event.subscribe('player_position', function(arg){
+							event_listener_append('position', arg[0], arg[1]);
+							$("#slider_seek").find('.bar').css('width', (100*arg[0]/arg[1]) + '%');
+						});
+				 
+						DZ.Event.subscribe('track_end', function() {
+							event_listener_append('track_end');
+						});
+					}
+					DZ.init({
+						appId  : '8',
+						channelUrl : 'http://developers.deezer.com/examples/channel.php',
+						player : {
+							onload : onPlayerLoaded
+						}
+					});
+				</script><br/>
+				event_listener : <br/>
+				<pre id="event_listener" style="height:100px;overflow:auto;"></pre>
+			</section>
+		</section>
 
-		</div>
-	
-		<script src="built/js/scripts.min.js"></script>
 	
 	</body>
 </html>

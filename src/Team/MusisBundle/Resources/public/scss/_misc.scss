@@ -1,0 +1,11 @@
+// Effet de surlignage
+::selection {
+	background: black;
+	color: $red;
+	@include text-shadow(none);
+}
+::-moz-selection {
+	background: black;
+	color: $red;
+	@include text-shadow(none);
+}
