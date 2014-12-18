@@ -1,16 +1,16 @@
 @import "compass/reset"; // Importation d'un reset CSS
 @import "compass/css3";
 
-@import '_vars.scss';
-@import '_mixins.scss';
-@import '_typo.scss';
-@import '_forms.scss';
-@import '_pages.scss';
-@import '_misc.scss';
-@import '_skin.scss';
-@import '_slidingpanel.scss';
-@import '_player.scss';
-@import '_leaflet.scss';
+@import 'vars';
+@import 'mixins';
+@import 'typo';
+@import 'forms';
+@import 'pages';
+@import 'misc';
+@import 'skin';
+@import 'slidingpanel';
+@import 'player';
+@import 'leaflet';
 
 // Classes génériques
 

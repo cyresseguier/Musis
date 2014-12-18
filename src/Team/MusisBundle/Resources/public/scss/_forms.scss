@@ -1,0 +1,17 @@
+input[type="submit"], input[type="button"], button, .button {
+	background:$red;
+	color:#fff;
+	border:0;
+	border-radius:3px;
+	padding:7px 50px;
+	outline:none;
+	@include box-shadow(0 2px 0 0 #7d3b32);
+	&:focus {
+		background:lighten($red,3%);
+	}
+	&:active {
+		position:relative;
+		top:2px;
+		@include box-shadow(none);
+	}
+}
