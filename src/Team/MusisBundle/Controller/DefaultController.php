@@ -43,9 +43,9 @@ class DefaultController extends Controller
     	// On récupère l'EntityManager
     	$em = $this->getDoctrine()->getManager();
 	    // Étape 1 : On « persiste » l'entité
-	    $em->persist($musictest);
-	    // Étape 2 : On « flush » tout ce qui a été persisté avant
-	    $em->flush();
+	    //$em->persist($musictest);
+	    // Étape 2 : On « flush » tout ce qui a été persisté avant pour l'enregistrer dans la BDD
+	    //$em->flush();
 
         return $this->render('TeamMusisBundle:Musis:index.html.twig',
         	array( 
