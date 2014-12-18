@@ -6,15 +6,18 @@ $menu-width:40px;
 }
 .side-panel {
 	position:fixed;
-	right:0;
+	right:-#{$menu-width};
+	top:0;
 	height:100%;
 	display:block;
 	min-height:100%;
 	width:$menu-width;
-	top:0;
 	background:rgba(255,255,255,.85);
-	@include transition(all .3s ease-in-out);
+	@include transition(all .9s ease-in-out);
 	@include box-shadow(-5px 0 5px -2px rgba(0,0,0,.2));
+	&.visible {
+		right:0;	
+	}
 	&.unfolded {
 		width:33%;
 	}

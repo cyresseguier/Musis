@@ -1,0 +1,26 @@
+#intro {
+	position:relative;
+	z-index:1001;
+	top:0;
+	height:100%;
+	text-align:center;
+	@include background-image(linear-gradient(#fff, #fff 38%, (rgba(#fff,0))));
+	@include transition(all 1s ease-in);
+	header {
+		padding-top:10%;
+		h1 {
+			margin:2%;
+		}
+	}
+	&.disabled {
+		top:-100%;
+	}
+}
+#map {
+	position:absolute;
+	top:0;
+	height:100%;
+	width:auto;
+	min-width:100%;
+	max-width:100%;
+}
