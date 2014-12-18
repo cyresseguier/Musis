@@ -42,6 +42,17 @@ class Place
      */
     private $coordLat;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Music", mappedBy="places", cascade={"persist"})
+     **/
+    private $musics;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->musics = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -120,5 +131,38 @@ class Place
     public function getCoordLat()
     {
         return $this->coordLat;
+    }
+
+    /**
+     * Add musics
+     *
+     * @param \Team\MusisBundle\Entity\Music $musics
+     * @return Place
+     */
+    public function addMusic(\Team\MusisBundle\Entity\Music $musics)
+    {
+        $this->musics[] = $musics;
+
+        return $this;
+    }
+
+    /**
+     * Remove musics
+     *
+     * @param \Team\MusisBundle\Entity\Music $musics
+     */
+    public function removeMusic(\Team\MusisBundle\Entity\Music $musics)
+    {
+        $this->musics->removeElement($musics);
+    }
+
+    /**
+     * Get musics
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMusics()
+    {
+        return $this->musics;
     }
 }

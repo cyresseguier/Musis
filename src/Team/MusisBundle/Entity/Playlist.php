@@ -35,6 +35,18 @@ class Playlist
      */
     private $presentation;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Music", mappedBy="playlists", cascade={"persist"})
+     **/
+    private $musics;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->musics = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -90,5 +102,38 @@ class Playlist
     public function getPresentation()
     {
         return $this->presentation;
+    }
+
+    /**
+     * Add musics
+     *
+     * @param \Team\MusisBundle\Entity\Music $musics
+     * @return Playlist
+     */
+    public function addMusic(\Team\MusisBundle\Entity\Music $musics)
+    {
+        $this->musics[] = $musics;
+
+        return $this;
+    }
+
+    /**
+     * Remove musics
+     *
+     * @param \Team\MusisBundle\Entity\Music $musics
+     */
+    public function removeMusic(\Team\MusisBundle\Entity\Music $musics)
+    {
+        $this->musics->removeElement($musics);
+    }
+
+    /**
+     * Get musics
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMusics()
+    {
+        return $this->musics;
     }
 }

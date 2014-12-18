@@ -50,25 +50,28 @@ class Music
     private $link;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Place", inversedBy="musics")
+     * @ORM\ManyToMany(targetEntity="Place", inversedBy="musics", cascade={"persist"})
      * @ORM\JoinTable(name="musics_places")
      **/
     private $places;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Artist", inversedBy="musics")
+     * @ORM\ManyToMany(targetEntity="Artist", inversedBy="musics", cascade={"persist"})
      * @ORM\JoinTable(name="musics_artists")
      **/
     private $artists;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Playlist", inversedBy="musics")
+     * @ORM\ManyToMany(targetEntity="Playlist", inversedBy="musics", cascade={"persist"})
      * @ORM\JoinTable(name="musics_playlists")
      **/
     private $playlists;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Description", cascade={"persist"})
+     **/
+    private $description;
 
- 
     /**
      * Constructor
      */
@@ -278,5 +281,28 @@ class Music
     public function getPlaylists()
     {
         return $this->playlists;
+    }
+
+    /**
+     * Set description
+     *
+     * @param \Team\MusisBundle\Entity\Description $description
+     * @return Music
+     */
+    public function setDescription(\Team\MusisBundle\Entity\Description $description = null)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return \Team\MusisBundle\Entity\Description 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
