@@ -1,6 +1,26 @@
 $( document ).ready(function() {
 
+	// SIDE PANEL
+
+	function panelManage(action) {
+		if (action == "toggle") {
+			$(".side-panel").toggleClass("unfolded");
+		} else if (action == "open") {
+			$(".side-panel").addClass("unfolded");
+		} else if (action == "close") {
+			$(".side-panel").removeClass("unfolded");
+		}
+	}
+
+	$(".panel-menu .toggle").click(function(e) {
+		e.preventDefault();
+		panelManage("toggle");
+	});
+
 	// LEAFLET
+
+
+	L.Icon.Default.imagePath = 'built/img';
 
 	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
 	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
@@ -13,19 +33,19 @@ $( document ).ready(function() {
 
 	map.addLayer(layer);
 
-	L.Icon.Default.imagePath = 'built/img';
+	var tourEiffel = L.marker([48.85837009999999, 2.2944813000000295]).addTo(map);
+	var tuileries = L.marker([48.8634916, 2.327494300000012]).addTo(map);
 
-	var marker = L.marker([48.85837009999999, 2.2944813000000295]).addTo(map);
+	var itineraire1 = [
+	  [48.85837009999999, 2.2944813000000295],
+	  [48.8634916, 2.327494300000012]
+	];
 
-	$(".leaftlet-marker-icon").click(function (e) {
-		alert("HEYHEY");
-	});
-	
+	var it1_path = L.polyline(itineraire1);
+	it1_path.addTo(map);
 
-	// SIDE PANEL
-
-	$(".panel-menu .toggle").click(function(e) {
-		e.preventDefault();
-		$(".side-panel").toggleClass("unfolded");
+	$(".leaflet-marker-icon").click(function (e) {
+		panelManage("open");
+		DZ.player.playAlbum(302127);
 	});
 });
