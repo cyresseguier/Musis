@@ -4,6 +4,7 @@ input[type="submit"], input[type="button"], button, .button {
 	border:0;
 	border-radius:3px;
 	padding:7px 50px;
+	margin:3px;
 	outline:none;
 	@include box-shadow(0 2px 0 0 #7d3b32);
 	&:focus {
