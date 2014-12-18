@@ -19,14 +19,13 @@ $( document ).ready(function() {
 
 	// LEAFLET
 
-
 	L.Icon.Default.imagePath = 'built/img';
 
 	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
 	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
 	});
 	var map = L.map('map', {
-	    scrollWheelZoom: true,
+	    scrollWheelZoom: false,
 	    center: [48.856614, 2.3522219000000177],
 	    zoom: 12
 	});
@@ -47,5 +46,12 @@ $( document ).ready(function() {
 	$(".leaflet-marker-icon").click(function (e) {
 		panelManage("open");
 		DZ.player.playAlbum(302127);
+	});
+
+	// INTRO SCROLL
+
+	$("#begin").click(function () {
+		$("#intro").addClass("disabled");
+		$(".side-panel").addClass("visible");
 	});
 });
