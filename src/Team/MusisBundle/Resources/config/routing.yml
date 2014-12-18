@@ -1,3 +1,7 @@
 team_musis_homepage:
     path:     /
     defaults: { _controller: TeamMusisBundle:Default:index }
+
+team_musis_edit:
+    path:     /music
+    defaults: { _controller: TeamMusisBundle:Music:index }
