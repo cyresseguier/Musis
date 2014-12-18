@@ -67,7 +67,7 @@ $menu-width:40px;
 	max-height:100%;
 	margin-left:$menu-width;
 	@include opacity(0);
-	background:#e74c3c;
+	background:#eee;
 	@include transition(all 1s ease-in-out);
 	.unfolded & {
 		@include opacity(1);
