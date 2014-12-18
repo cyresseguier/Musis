@@ -27,7 +27,7 @@ $menu-width:40px;
 	width:$menu-width;
 	@include box-sizing(border-box);
 	float:left;
-	background:#34495e;
+	background:$darkblue;
 	height:auto;
 	min-height:100%;
 	color:#fff;

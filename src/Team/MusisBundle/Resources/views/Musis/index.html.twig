@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Musis</title>
-
+		<meta name="viewport" content="width=device-width,initial-scale=1" /> 
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Antic+Slab' rel='stylesheet' type='text/css'>
@@ -17,25 +17,37 @@
 	<body>
 		<div id="dz-root"></div>	
 		<section id="intro">
-			<header>
-				<h1>Musis</h1>
+			<header id="main">
+				<h1><img src="built/img/logo.png"/></h1>
 				<nav class="main-menu">
 					<ul>
 						<li><a href="#_">Playlist</a></li>
 						<li><a href="#_">Parcours</a></li>
-						<li class="logo-placeholder"></li>
+						<li class="logo-placeholder">Logo</li>
 						<li><a href="#_">Artistes</a></li>
 						<li><a href="#_">À propos</a></li>
 					</ul>
 				</nav>
 			</header>
-			<p>
+			<p class="text-intro">
 				Redécouvrez Paris à travers la musique.<br/>
 				Musis vous propose des balades d'un nouveau genre. Une manière originale<br/>de voir la ville.
 			</p>
 			<button id="begin">Commencer la visite</button>
 		</section>
-		<section class="musisMap" id="map"></section>
+		<nav id="mainmenu">
+			<div class="fa fa-times rounded" id="menu-close"></div>
+			<ul>
+				<li><a href="#_">Accueil</a></li>
+				<li><a href="#_">Playlist</a></li>
+				<li><a href="#_">Parcours</a></li>
+				<li><a href="#_">Artistes</a></li>
+				<li><a href="#_">À propos</a></li>
+			</ul>
+		</nav>
+		<div class="fa fa-navicon rounded" id="menu-open"></div>
+		<section class="musisMap" id="map">
+		</section>
 		<section class="side-panel">
 			<nav class="panel-menu">
 				<ul>
@@ -107,6 +119,6 @@
 					onload : onPlayerLoaded
 				}
 			});
-		</script><br/>
+		</script>
 	</body>
 </html>

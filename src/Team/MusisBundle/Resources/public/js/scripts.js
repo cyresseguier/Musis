@@ -54,4 +54,15 @@ $( document ).ready(function() {
 		$("#intro").addClass("disabled");
 		$(".side-panel").addClass("visible");
 	});
+
+	//FULLSCREEN MENU
+
+	$("#menu-open").click(function (e) {
+		e.preventDefault();
+		$("#mainmenu").fadeIn();
+	});
+	$("#menu-close").click(function (e) {
+		e.preventDefault();
+		$("#mainmenu").fadeOut();
+	});
 });

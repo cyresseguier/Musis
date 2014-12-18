@@ -34,3 +34,34 @@ html {
 body {
 
 }
+.rounded {
+	width:2em;
+	height:2em;
+	background:$darkblue;
+	color:#fff;
+	border-radius:2em;
+	font-size:2em;
+	padding-top:.5em;
+	box-sizing:border-box;
+	text-align:center;
+}
+#mainmenu {
+	display:none;
+	text-align:center;
+	position: absolute;
+	top:5%;
+	left:2.5%;
+	width:95%;
+	height:auto;
+	min-height:90%;
+	max-height:90%;
+	z-index:9000;
+	background:rgba(255,255,255,.9);
+	border-radius:.8em;
+	//@include box-shadow(0 0 10px 0 rgba(0,0,0,.5));
+}
+#menu-close {
+	position:absolute;
+	right:.5em;
+	top:.5em;
+}

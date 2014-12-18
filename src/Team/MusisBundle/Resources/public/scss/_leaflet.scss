@@ -77,9 +77,9 @@
 /* control positioning */
 
 .leaflet-control {
-	position: relative;
-	top:85px;
-	left:10px;
+	position:absolute;
+	top:10em;
+	left:3.5em;
 	z-index: 7;
 	pointer-events: auto;
 }
