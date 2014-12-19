@@ -77,9 +77,6 @@
 /* control positioning */
 
 .leaflet-control {
-	position:absolute;
-	top:10em;
-	left:3.5em;
 	z-index: 7;
 	pointer-events: auto;
 }
@@ -413,11 +410,7 @@
 
 	margin: -10px auto 0;
 
-	-webkit-transform: rotate(45deg);
-	   -moz-transform: rotate(45deg);
-	    -ms-transform: rotate(45deg);
-	     -o-transform: rotate(45deg);
-	        transform: rotate(45deg);
+	@include transform(rotate(45deg));
 }
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {

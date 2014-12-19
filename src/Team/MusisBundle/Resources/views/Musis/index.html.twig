@@ -10,8 +10,10 @@
 		<link href='http://fonts.googleapis.com/css?family=Antic+Slab' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="built/css/style.css" />
 		<script src="built/js/scripts.min.js"></script>
+		<script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluurn1uynu%2Cal%3Do5-9wys0r"></script>
+		<script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluurn1uynu%2Cal%3Do5-9wys0r"></script>
 		<script src="http://195.154.110.135:35729/livereload.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
   	</head>
 	<body>
@@ -38,14 +40,13 @@
 		<nav id="mainmenu">
 			<div class="fa fa-times rounded" id="menu-close"></div>
 			<ul>
-				<li><a href="#_">Accueil</a></li>
-				<li><a href="#_">Playlist</a></li>
-				<li><a href="#_">Parcours</a></li>
-				<li><a href="#_">Artistes</a></li>
-				<li><a href="#_">À propos</a></li>
+				<li><a class="accueil" href="#_">Accueil</a></li>
+				<li><a class="playlist" href="#_">Playlist</a></li>
+				<li><a class="parcours" href="#_">Parcours</a></li>
+				<li><a class="Artistes" href="#_">Artistes</a></li>
+				<li><a class="apropos" href="#_">À propos</a></li>
 			</ul>
 		</nav>
-		<div class="fa fa-navicon rounded" id="menu-open"></div>
 		<section class="musisMap" id="map">
 		</section>
 		<section class="side-panel">
@@ -53,7 +54,7 @@
 				<ul>
 					<li><a href="#_" class="toggle fa fa-angle-double-left"></a></li>
 					<li><a href="#_" class="fa fa-home"></a></li>
-					<li><a href="#_" class="fa fa-leaf"></a></li>
+					<li><a href="#_" class="fa fa-navicon" id="menu-open"></a></li>
 					<li><a href="#_" class="fa fa-plus"></a></li>
 					<li><a href="#_" class="fa fa-info"></a></li>
 				</ul>

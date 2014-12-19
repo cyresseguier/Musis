@@ -21,29 +21,35 @@ $( document ).ready(function() {
 
 	L.Icon.Default.imagePath = 'built/img';
 
-	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
-	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-	});
+	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
 	var map = L.map('map', {
-	    scrollWheelZoom: false,
-	    center: [48.856614, 2.3522219000000177],
-	    zoom: 12
+		layers: MQ.mapLayer(),
+		scrollWheelZoom: false,
+		center: [48.856614, 2.3522219000000177],
+		zoom: 12
+	});
+	var dir = MQ.routing.directions();
+
+	dir.optimizedRoute({
+		locations: [
+			'Avenue des champs-élysées, Paris, France',
+			'Place de la Bastille, Paris, France'
+		]
 	});
 
 	map.addLayer(layer);
+	map.addLayer(MQ.routing.routeLayer({
+		draggable: false,
+		ribbonOptions: {
+			ribbonDisplay: {color: '#3b7075', opacity: '0.7'},
+		},
+		directions: dir,
+		fitBounds: true
+	}));
 
-	var tourEiffel = L.marker([48.85837009999999, 2.2944813000000295]).addTo(map);
-	var tuileries = L.marker([48.8634916, 2.327494300000012]).addTo(map);
-
-	var itineraire1 = [
-	  [48.85837009999999, 2.2944813000000295],
-	  [48.8634916, 2.327494300000012]
-	];
-
-	var it1_path = L.polyline(itineraire1);
-	it1_path.addTo(map);
-
-	$(".leaflet-marker-icon").click(function (e) {
+	$(".leaflet-marker-icon").click(function () {
+		alert("test");
+		console.log("blop");
 		panelManage("open");
 		DZ.player.playAlbum(302127);
 	});
@@ -59,7 +65,7 @@ $( document ).ready(function() {
 
 	$("#menu-open").click(function (e) {
 		e.preventDefault();
-		$("#mainmenu").fadeIn();
+		$("#mainmenu").fadeIn().css('display','table');
 	});
 	$("#menu-close").click(function (e) {
 		e.preventDefault();
