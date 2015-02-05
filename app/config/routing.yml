@@ -1,3 +1,8 @@
 team_musis:
     resource: "@TeamMusisBundle/Resources/config/routing.yml"
     prefix:   /
+
+team_musis_register:
+    resource: "@TeamMusisBundle/Controller/MusicController.php"
+    type:     annotation
+    prefix:   /

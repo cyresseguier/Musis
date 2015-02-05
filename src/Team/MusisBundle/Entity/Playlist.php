@@ -136,4 +136,15 @@ class Playlist
     {
         return $this->musics;
     }
+
+    /**
+     *
+     *
+     *To String
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
 }
