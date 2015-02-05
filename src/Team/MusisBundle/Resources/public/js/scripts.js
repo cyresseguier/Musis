@@ -33,8 +33,19 @@ $( document ).ready(function() {
 	dir.optimizedRoute({
 		locations: [
 			'Avenue des champs-élysées, Paris, France',
-			'Place de la Bastille, Paris, France'
-		]
+			'Rue Pierre Semard, Paris, France',
+			'Place de la Bastille, Paris, France',
+			'Avenue des champs-élysées, Paris, France',
+		],
+		options: {
+			routeType: 'bicycle',
+			avoids: [
+				'Toll Road',
+				'Limited Access'
+			],
+			locale: 'fr_FR',
+			unit: 'k'
+		}
 	});
 
 	map.addLayer(layer);
@@ -44,7 +55,7 @@ $( document ).ready(function() {
 			ribbonDisplay: {color: '#3b7075', opacity: '0.7'},
 		},
 		directions: dir,
-		fitBounds: true
+		fitBounds: true,
 	}));
 
 	$(".leaflet-marker-icon").click(function () {

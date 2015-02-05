@@ -1,9 +1,10 @@
 input[type="submit"], input[type="button"], button, .button {
+	font-size:1.1em;
 	background:$red;
 	color:#fff;
 	border:0;
 	border-radius:3px;
-	padding:7px 50px;
+	padding:.6em 4em;
 	margin:3px;
 	outline:none;
 	@include box-shadow(0 2px 0 0 #7d3b32);
