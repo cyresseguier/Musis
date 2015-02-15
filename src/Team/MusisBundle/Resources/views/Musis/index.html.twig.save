@@ -10,6 +10,8 @@
 		<link href='http://fonts.googleapis.com/css?family=Antic+Slab' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="built/css/style.css" />
 		<script src="built/js/scripts.min.js"></script>
+		<script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key="Fmjtd%7Cluu821u225%2Crs%3Do5-94aldwFmjtd%7Cluu821u225%2Crs%3Do5-94aldw"></script>
+		<script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluurn1uynu%2Cal%3Do5-9wys0r"></script>
 		<script src="http://195.154.110.135:35729/livereload.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>

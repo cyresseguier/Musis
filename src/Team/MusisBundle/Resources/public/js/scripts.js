@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function() {
 
 	// SIDE PANEL
 
@@ -12,8 +12,9 @@ $( document ).ready(function() {
 		}
 	}
 
-	$(".panel-menu .toggle").click(function(e) {
+	$(".panel-menu li").click(function(e) {
 		e.preventDefault();
+		$(this).toggleClass("active");
 		panelManage("toggle");
 	});
 
@@ -22,41 +23,21 @@ $( document ).ready(function() {
 	L.Icon.Default.imagePath = 'built/img';
 
 	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
-	var map = L.map('map', {
-		layers: MQ.mapLayer(),
-		scrollWheelZoom: false,
-		center: [48.856614, 2.3522219000000177],
-		zoom: 12
-	});
-	var dir = MQ.routing.directions();
 
-	dir.optimizedRoute({
-		locations: [
-			'Avenue des champs-élysées, Paris, France',
-			'Rue Pierre Semard, Paris, France',
-			'Place de la Bastille, Paris, France',
-			'Avenue des champs-élysées, Paris, France',
-		],
-		options: {
-			routeType: 'bicycle',
-			avoids: [
-				'Toll Road',
-				'Limited Access'
-			],
-			locale: 'fr_FR',
-			unit: 'k'
-		}
-	});
+	var map = L.map('map');
+
+	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+
+	L.Routing.control({
+	    waypoints: [
+		L.latLng(57.74, 11.94),
+		L.latLng(57.6792, 11.949)
+	    ]
+	}).addTo(map);
 
 	map.addLayer(layer);
-	map.addLayer(MQ.routing.routeLayer({
-		draggable: false,
-		ribbonOptions: {
-			ribbonDisplay: {color: '#3b7075', opacity: '0.7'},
-		},
-		directions: dir,
-		fitBounds: true,
-	}));
 
 	$(".leaflet-marker-icon").click(function () {
 		alert("test");

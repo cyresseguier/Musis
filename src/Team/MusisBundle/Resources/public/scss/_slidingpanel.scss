@@ -1,4 +1,4 @@
-$menu-width:40px;
+$menu-width:70px;
 
 #map {
 	height:100%;
@@ -6,41 +6,43 @@ $menu-width:40px;
 }
 .side-panel {
 	position:fixed;
-	right:-#{$menu-width};
 	top:0;
 	height:100%;
 	display:block;
 	min-height:100%;
-	width:$menu-width;
+	width:0;
 	background:rgba(255,255,255,.85);
 	@include transition(all .9s ease-in-out);
-	@include box-shadow(-5px 0 5px -2px rgba(0,0,0,.2));
 	&.visible {
-		right:0;	
+		right:#{$menu-width};
 	}
 	&.unfolded {
 		width:33%;
+		min-width:430px;
 	}
 }
 .panel-menu {
 	text-align:center;
 	width:$menu-width;
 	@include box-sizing(border-box);
+	@include box-shadow(-5px 0 5px -2px rgba(0,0,0,.2));
 	float:left;
 	background:#fff;
 	height:auto;
 	min-height:100%;
-	color:#fff;
+	color:#757575;
 	font-size:22px;
+	position:fixed;
+	right:0;
+	z-index:1;
 	ul {
 		padding:0;
 		margin:0;
 	}
 	li {
 		display:block;
-		padding:8px 0;
-		border-top:1px solid rgba(0,0,0,.09);
-		border-bottom:1px solid rgba(255,255,255,.07);
+		padding	:0 6px;
+		border-top:1px solid #e1e1e1;
 		&:first-child {
 			border-top:none;
 		}
@@ -48,10 +50,22 @@ $menu-width:40px;
 			border-bottom:none;
 		}
 		a {
+			padding:1.2em 0;
 			text-decoration:none;
-			color:#fff;
+			color:#757575;
 			outline:none;
 			display:block;
+		}
+	}
+	.menu {
+		border-right:0;
+		@include transition(all .3s ease);
+		&:hover {
+			border-right: 6px solid #a85044;
+		}
+		&.active {
+			border-right:0;
+			border-left: 6px solid #a85044;
 		}
 	}
 	.toggle {
@@ -66,11 +80,11 @@ $menu-width:40px;
 	height:auto;
 	@include box-sizing(border-box);
 	padding:15px 20px;
+	z-index:0;
 	min-height:100%;
 	max-height:100%;
-	margin-left:$menu-width;
 	@include opacity(0);
-	background:#eee;
+	background:#fff;
 	@include transition(all 1s ease-in-out);
 	.unfolded & {
 		@include opacity(1);
