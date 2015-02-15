@@ -31,10 +31,17 @@ $(document).ready(function() {
 	}).addTo(map);
 
 	L.Routing.control({
-	    waypoints: [
-		L.latLng(57.74, 11.94),
-		L.latLng(57.6792, 11.949)
-	    ]
+		plan: L.Routing.plan([
+			L.latLng(48.85837009999999, 2.2944813000000295),
+			L.latLng(48.851264, 2.3760990000000675)
+		], {
+			createMarker: function(i, wp) {
+				return L.marker(wp.latLng, {
+					draggable: false,
+				});
+			},
+		}),
+		routeWhileDragging: false
 	}).addTo(map);
 
 	map.addLayer(layer);
