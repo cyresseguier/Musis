@@ -35,17 +35,17 @@ class Playlist
      */
     private $presentation;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Music", mappedBy="playlists", cascade={"persist"})
-     **/
-    private $musics;
+     /**
+     * @ORM\OneToMany(targetEntity="Team\MusisBundle\Entity\MusicPlaylist", mappedBy="playlist", cascade={"persist"})
+     */
+    private $musicsPlaylists;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->musics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->musicsPlaylists = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -105,46 +105,40 @@ class Playlist
     }
 
     /**
-     * Add musics
+     * Add musicsPlaylists
      *
-     * @param \Team\MusisBundle\Entity\Music $musics
+     * @param \Team\MusisBundle\Entity\MusicPlaylist $musicsPlaylists
      * @return Playlist
      */
-    public function addMusic(\Team\MusisBundle\Entity\Music $musics)
+    public function addMusicsPlaylist(\Team\MusisBundle\Entity\MusicPlaylist $musicsPlaylists)
     {
-        $this->musics[] = $musics;
+        $this->musicsPlaylists[] = $musicsPlaylists;
 
         return $this;
     }
 
     /**
-     * Remove musics
+     * Remove musicsPlaylists
      *
-     * @param \Team\MusisBundle\Entity\Music $musics
+     * @param \Team\MusisBundle\Entity\MusicPlaylist $musicsPlaylists
      */
-    public function removeMusic(\Team\MusisBundle\Entity\Music $musics)
+    public function removeMusicsPlaylist(\Team\MusisBundle\Entity\MusicPlaylist $musicsPlaylists)
     {
-        $this->musics->removeElement($musics);
+        $this->musicsPlaylists->removeElement($musicsPlaylists);
     }
 
     /**
-     * Get musics
+     * Get musicsPlaylists
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getMusics()
+    public function getMusicsPlaylists()
     {
-        return $this->musics;
+        return $this->musicsPlaylists;
     }
 
-    /**
-     *
-     *
-     *To String
-     */
     public function __toString()
     {
-        return $this->name;
+        return (string) $this->getName();
     }
-
 }

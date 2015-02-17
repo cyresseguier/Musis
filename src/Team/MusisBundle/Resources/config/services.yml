@@ -2,3 +2,82 @@ services:
 #    team_musis.example:
 #        class: Team\MusisBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    sonata.admin.music:
+        class: Team\MusisBundle\Admin\MusicAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Music" }
+        arguments:
+            - ~
+            - Team\MusisBundle\Entity\Music
+            - ~
+        calls:
+            - [ setTranslationDomain, [TeamMusisBundle]]
+
+    sonata.admin.musicPlaces:
+        class: Team\MusisBundle\Admin\MusicPlaceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "musicPlaces" }
+        arguments:
+            - ~
+            - Team\MusisBundle\Entity\MusicPlace
+            - ~
+        calls:
+            - [ setTranslationDomain, [TeamMusisBundle]]
+        show_in_dashboard: false
+
+    sonata.admin.musicArtists:
+        class: Team\MusisBundle\Admin\MusicArtistAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "musicArtists" }
+        arguments:
+            - ~
+            - Team\MusisBundle\Entity\MusicArtist
+            - ~
+        calls:
+            - [ setTranslationDomain, [TeamMusisBundle]]
+
+    sonata.admin.musicPlaylists:
+        class: Team\MusisBundle\Admin\MusicPlaylistAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "musicPlaylists" }
+        arguments:
+            - ~
+            - Team\MusisBundle\Entity\MusicPlaylist
+            - ~
+        calls:
+            - [ setTranslationDomain, [TeamMusisBundle]]
+
+    sonata.admin.place:
+        class: Team\MusisBundle\Admin\PlaceAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Place" }
+        arguments:
+            - ~
+            - Team\MusisBundle\Entity\Place
+            - ~
+        calls:
+            - [ setTranslationDomain, [TeamMusisBundle]]
+
+    sonata.admin.artist:
+        class: Team\MusisBundle\Admin\ArtistAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Artist" }
+        arguments:
+            - ~
+            - Team\MusisBundle\Entity\Artist
+            - ~
+        calls:
+            - [ setTranslationDomain, [TeamMusisBundle]]
+
+    sonata.admin.playlist:
+        class: Team\MusisBundle\Admin\PlaylistAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Playlist" }
+        arguments:
+            - ~
+            - Team\MusisBundle\Entity\Playlist
+            - ~
+        calls:
+            - [ setTranslationDomain, [TeamMusisBundle]]
+

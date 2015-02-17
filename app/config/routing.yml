@@ -2,7 +2,11 @@ team_musis:
     resource: "@TeamMusisBundle/Resources/config/routing.yml"
     prefix:   /
 
-team_musis_register:
-    resource: "@TeamMusisBundle/Controller/MusicController.php"
-    type:     annotation
-    prefix:   /
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
