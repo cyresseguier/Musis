@@ -75,6 +75,43 @@
 				<li><a class="Artistes" href="#_">Artistes</a></li>
 				<li><a class="apropos" href="#_">À propos</a></li>
 			</ul>
+<<<<<<< HEAD
+=======
+		</nav>
+		<section class="musisMap" id="map">
+		</section>
+		<section class="side-panel">
+			<nav class="panel-menu">
+				<ul>
+					<li><a href="#_" class="fa fa-search"></a></li>
+					<li><a href="#_" class="toggle fa fa-arrow-left"></a></li>
+					<li class="menu"><a href="#_" class="fa fa-navicon" id="menu-open"></a></li>
+					<li><a href="#_" class="fa fa-map-marker"></a></li>
+					<li><a href="#_" class="fa fa-play"></a></li>
+				</ul>
+			</nav>		
+			<section class="panel-content">
+				<h2>Titre de la musique</h2>
+				<div id="controlers">
+					<input type="button" onclick="DZ.player.playAlbum(302127); return false;" value="Play Daft Punk - Discovery"/>
+					<input type="button" onclick="DZ.player.playAlbum(301775); return false;" value="Play Daft Punk - Homework"/>
+					<br/>
+					<input type="button" onclick="DZ.player.play(); return false;" value="play"/>
+					<input type="button" onclick="DZ.player.pause(); return false;" value="pause"/>
+					<input type="button" onclick="DZ.player.prev(); return false;" value="prev"/>
+					<input type="button" onclick="DZ.player.next(); return false;" value="next"/>
+					<br/>
+					<input type="button" onclick="DZ.player.setVolume(20); return false;" value="set Volume 20"/>
+					<input type="button" onclick="DZ.player.setVolume(80); return false;" value="set Volume 80"/>
+					<br/><br/><br/>
+				</div>
+				<div id="slider_seek" class="progressbarplay" style="">
+				  <div class="bar" style="width: 0%;"></div>
+				</div>
+				event_listener : <br/>
+				<pre id="event_listener" style="height:100px;overflow:auto;"></pre>
+			</section>
+>>>>>>> ebac05cabcc5f526360f81623e5b9a788b887a8a
 		</section>
 		<script>
 			$(document).ready(function(){

@@ -43,15 +43,19 @@ class Place
     private $coordLat;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Music", mappedBy="places", cascade={"persist"})
-     **/
-    private $musics;
+     * @ORM\OneToMany(targetEntity="Team\MusisBundle\Entity\MusicPlace", mappedBy="place", cascade={"persist"})
+     */
+    private $musicsPlaces;
+ 
+   
+
+   
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->musics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->musicsPlaces = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -134,35 +138,40 @@ class Place
     }
 
     /**
-     * Add musics
+     * Add musicsPlaces
      *
-     * @param \Team\MusisBundle\Entity\Music $musics
+     * @param \Team\MusisBundle\Entity\MusicPlace $musicsPlaces
      * @return Place
      */
-    public function addMusic(\Team\MusisBundle\Entity\Music $musics)
+    public function addMusicsPlace(\Team\MusisBundle\Entity\MusicPlace $musicsPlaces)
     {
-        $this->musics[] = $musics;
+        $this->musicsPlaces[] = $musicsPlaces;
 
         return $this;
     }
 
     /**
-     * Remove musics
+     * Remove musicsPlaces
      *
-     * @param \Team\MusisBundle\Entity\Music $musics
+     * @param \Team\MusisBundle\Entity\MusicPlace $musicsPlaces
      */
-    public function removeMusic(\Team\MusisBundle\Entity\Music $musics)
+    public function removeMusicsPlace(\Team\MusisBundle\Entity\MusicPlace $musicsPlaces)
     {
-        $this->musics->removeElement($musics);
+        $this->musicsPlaces->removeElement($musicsPlaces);
     }
 
     /**
-     * Get musics
+     * Get musicsPlaces
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getMusics()
+    public function getMusicsPlaces()
     {
-        return $this->musics;
+        return $this->musicsPlaces;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getName();
     }
 }

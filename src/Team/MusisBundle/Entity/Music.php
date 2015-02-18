@@ -50,36 +50,35 @@ class Music
     private $link;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Place", inversedBy="musics", cascade={"persist"})
-     * @ORM\JoinTable(name="musics_places")
-     **/
-    private $places;
+     * @var string
+     *
+     * @ORM\Column(name="lyrics", type="string", length=255)
+     */
+    private $lyrics;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Artist", inversedBy="musics", cascade={"persist"})
-     * @ORM\JoinTable(name="musics_artists")
-     **/
-    private $artists;
+     * @ORM\OneToMany(targetEntity="Team\MusisBundle\Entity\MusicPlace", mappedBy="music", cascade={"persist"})
+     */
+    private $musicsPlaces;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Playlist", inversedBy="musics", cascade={"persist"})
-     * @ORM\JoinTable(name="musics_playlists")
-     **/
-    private $playlists;
+     * @ORM\OneToMany(targetEntity="Team\MusisBundle\Entity\MusicArtist", mappedBy="music", cascade={"persist"})
+     */
+    private $musicsArtists;
 
     /**
-     * @ORM\OneToOne(targetEntity="Description", cascade={"persist"})
-     **/
-    private $description;
+     * @ORM\OneToMany(targetEntity="Team\MusisBundle\Entity\MusicPlaylist", mappedBy="music", cascade={"persist"})
+     */
+    private $musicsPlaylists;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->places = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->artists = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->playlists = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->musicsPlaces = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->musicsArtists = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->musicsPlaylists = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -185,124 +184,124 @@ class Music
     }
 
     /**
-     * Add places
+     * Set lyrics
      *
-     * @param \Team\MusisBundle\Entity\Place $places
+     * @param string $lyrics
      * @return Music
      */
-    public function addPlace(\Team\MusisBundle\Entity\Place $places)
+    public function setLyrics($lyrics)
     {
-        $this->places[] = $places;
+        $this->lyrics = $lyrics;
 
         return $this;
     }
 
     /**
-     * Remove places
+     * Get lyrics
      *
-     * @param \Team\MusisBundle\Entity\Place $places
+     * @return string 
      */
-    public function removePlace(\Team\MusisBundle\Entity\Place $places)
+    public function getLyrics()
     {
-        $this->places->removeElement($places);
+        return $this->lyrics;
     }
 
     /**
-     * Get places
+     * Add musicsPlaces
+     *
+     * @param \Team\MusisBundle\Entity\MusicPlace $musicsPlaces
+     * @return Music
+     */
+    public function addMusicsPlace(\Team\MusisBundle\Entity\MusicPlace $musicsPlaces)
+    {
+        $this->musicsPlaces[] = $musicsPlaces;
+
+        return $this;
+    }
+
+    /**
+     * Remove musicsPlaces
+     *
+     * @param \Team\MusisBundle\Entity\MusicPlace $musicsPlaces
+     */
+    public function removeMusicsPlace(\Team\MusisBundle\Entity\MusicPlace $musicsPlaces)
+    {
+        $this->musicsPlaces->removeElement($musicsPlaces);
+    }
+
+    /**
+     * Get musicsPlaces
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getPlaces()
+    public function getMusicsPlaces()
     {
-        return $this->places;
+        return $this->musicsPlaces;
     }
 
     /**
-     * Add artists
+     * Add musicsArtists
      *
-     * @param \Team\MusisBundle\Entity\Artist $artists
+     * @param \Team\MusisBundle\Entity\MusicArtist $musicsArtists
      * @return Music
      */
-    public function addArtist(\Team\MusisBundle\Entity\Artist $artists)
+    public function addMusicsArtist(\Team\MusisBundle\Entity\MusicArtist $musicsArtists)
     {
-        $this->artists[] = $artists;
+        $this->musicsArtists[] = $musicsArtists;
 
         return $this;
     }
 
     /**
-     * Remove artists
+     * Remove musicsArtists
      *
-     * @param \Team\MusisBundle\Entity\Artist $artists
+     * @param \Team\MusisBundle\Entity\MusicArtist $musicsArtists
      */
-    public function removeArtist(\Team\MusisBundle\Entity\Artist $artists)
+    public function removeMusicsArtist(\Team\MusisBundle\Entity\MusicArtist $musicsArtists)
     {
-        $this->artists->removeElement($artists);
+        $this->musicsArtists->removeElement($musicsArtists);
     }
 
     /**
-     * Get artists
+     * Get musicsArtists
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getArtists()
+    public function getMusicsArtists()
     {
-        return $this->artists;
+        return $this->musicsArtists;
     }
 
     /**
-     * Add playlists
+     * Add musicsPlaylists
      *
-     * @param \Team\MusisBundle\Entity\Playlist $playlists
+     * @param \Team\MusisBundle\Entity\MusicPlaylist $musicsPlaylists
      * @return Music
      */
-    public function addPlaylist(\Team\MusisBundle\Entity\Playlist $playlists)
+    public function addMusicsPlaylist(\Team\MusisBundle\Entity\MusicPlaylist $musicsPlaylists)
     {
-        $this->playlists[] = $playlists;
+        $this->musicsPlaylists[] = $musicsPlaylists;
 
         return $this;
     }
 
     /**
-     * Remove playlists
+     * Remove musicsPlaylists
      *
-     * @param \Team\MusisBundle\Entity\Playlist $playlists
+     * @param \Team\MusisBundle\Entity\MusicPlaylist $musicsPlaylists
      */
-    public function removePlaylist(\Team\MusisBundle\Entity\Playlist $playlists)
+    public function removeMusicsPlaylist(\Team\MusisBundle\Entity\MusicPlaylist $musicsPlaylists)
     {
-        $this->playlists->removeElement($playlists);
+        $this->musicsPlaylists->removeElement($musicsPlaylists);
     }
 
     /**
-     * Get playlists
+     * Get musicsPlaylists
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getPlaylists()
+    public function getMusicsPlaylists()
     {
-        return $this->playlists;
-    }
-
-    /**
-     * Set description
-     *
-     * @param \Team\MusisBundle\Entity\Description $description
-     * @return Music
-     */
-    public function setDescription(\Team\MusisBundle\Entity\Description $description = null)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return \Team\MusisBundle\Entity\Description 
-     */
-    public function getDescription()
-    {
-        return $this->description;
+        return $this->musicsPlaylists;
     }
 }

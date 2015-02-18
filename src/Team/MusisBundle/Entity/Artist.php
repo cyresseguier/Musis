@@ -29,17 +29,16 @@ class Artist
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Music", mappedBy="artists", cascade={"persist"})
-     **/
-    private $musics;
+     * @ORM\OneToMany(targetEntity="Team\MusisBundle\Entity\MusicArtist", mappedBy="artist", cascade={"persist"})
+     */
+    private $musicsArtists;
 
-  
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->musics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->musicsArtists = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -76,35 +75,40 @@ class Artist
     }
 
     /**
-     * Add musics
+     * Add musicsArtists
      *
-     * @param \Team\MusisBundle\Entity\Music $musics
+     * @param \Team\MusisBundle\Entity\MusicArtist $musicsArtists
      * @return Artist
      */
-    public function addMusic(\Team\MusisBundle\Entity\Music $musics)
+    public function addMusicsArtist(\Team\MusisBundle\Entity\MusicArtist $musicsArtists)
     {
-        $this->musics[] = $musics;
+        $this->musicsArtists[] = $musicsArtists;
 
         return $this;
     }
 
     /**
-     * Remove musics
+     * Remove musicsArtists
      *
-     * @param \Team\MusisBundle\Entity\Music $musics
+     * @param \Team\MusisBundle\Entity\MusicArtist $musicsArtists
      */
-    public function removeMusic(\Team\MusisBundle\Entity\Music $musics)
+    public function removeMusicsArtist(\Team\MusisBundle\Entity\MusicArtist $musicsArtists)
     {
-        $this->musics->removeElement($musics);
+        $this->musicsArtists->removeElement($musicsArtists);
     }
 
     /**
-     * Get musics
+     * Get musicsArtists
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getMusics()
+    public function getMusicsArtists()
     {
-        return $this->musics;
+        return $this->musicsArtists;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getName();
     }
 }
