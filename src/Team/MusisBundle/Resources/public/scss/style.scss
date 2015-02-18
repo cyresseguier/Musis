@@ -46,81 +46,11 @@ body {
 	box-sizing:border-box;
 	text-align:center;
 }
-#mainmenu {
-	display:none;
-	text-align:center;
-	position: absolute;
-	top:4%;
-	left:4%;
-	width:92%;
-	height:auto;
-	min-height:92%;
-	max-height:92%;
-	z-index:9000;
-	background:rgba(255,255,255,.95);
-	border-radius:.4em;
-	//@include box-shadow(0 0 10px 0 rgba(0,0,0,.5));
-	ul {
-		display:table-cell;
-		vertical-align:middle;
-		margin:0;
-		padding:0;
-	}
-	li {
-		a {
-			font:400 2.4em/1.6em $text;
-			text: {
-				transform:uppercase;
-				decoration:none;
-			}
-			&:hover {
-				border:solid 3px;
-				border-top-width:0;
-				border-bottom-width:0;
-				padding:0 1em;
-			}
-			&.accueil {
-				color:#c1b458;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#c1b458;
-				}
-			}
-			&.playlist {
-				color:#213f42;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#213f42;
-				}
-			}
-			&.parcours {
-				color:#a85044;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#a85044;
-				}
-			}
-			&.artistes {
-				color:#824e6c;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#824e6c;
-				}
-			}
-			&.apropos {
-				color:#826244;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#826244;
-				}
-			}
-		}
-	}
+#map {
+	height:100%;
+	min-height:100%;
 }
-#menu-close {
-	color:#3b7075;
-	font-size:1.5em;
-	position:absolute;
-	right:1em;
-	top:1em;
+.leaflet-top.leaflet-right {
+	margin-right:80px;
+	z-index:0;
 }

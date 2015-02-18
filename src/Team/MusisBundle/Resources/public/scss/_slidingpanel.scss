@@ -1,27 +1,7 @@
 $menu-width:70px;
 
-#map {
-	height:100%;
-	min-height:100%;
-}
-.side-panel {
-	position:fixed;
-	top:0;
-	height:100%;
-	display:block;
-	min-height:100%;
-	width:0;
-	background:rgba(255,255,255,.85);
-	@include transition(all .9s ease-in-out);
-	&.visible {
-		right:#{$menu-width};
-	}
-	&.unfolded {
-		width:33%;
-		min-width:430px;
-	}
-}
 .panel-menu {
+	display:block;
 	text-align:center;
 	width:$menu-width;
 	@include box-sizing(border-box);
@@ -34,6 +14,7 @@ $menu-width:70px;
 	font-size:22px;
 	position:fixed;
 	right:0;
+	top:0;
 	z-index:1;
 	ul {
 		padding:0;
@@ -68,11 +49,13 @@ $menu-width:70px;
 			border-left: 6px solid #a85044;
 		}
 	}
-	.toggle {
+	.fa-arrow-left {
 		@include transition(all .3s ease-in-out);
-	}
-	.unfolded & .toggle {
-		@include transform(rotate(-180deg));
+		border:solid 1px red;
+		.active & {
+			border:solid 1px blue;
+			@include transform(rotate(-180deg));
+		}
 	}
 }
 .panel-content {
@@ -89,5 +72,77 @@ $menu-width:70px;
 	.unfolded & {
 		@include opacity(1);
 		visibility:visible;
+	}
+}
+#mainmenu {
+	ul {
+		display:table-cell;
+		vertical-align:middle;
+		margin:0;
+		padding:0;
+	}
+	li {
+		a {
+			font:400 2.4em/1.6em $text;
+			text: {
+				transform:uppercase;
+				decoration:none;
+			}
+			&:hover {
+				border:solid 3px;
+				border-top-width:0;
+				border-bottom-width:0;
+				padding:0 1em;
+			}
+			&.accueil {
+				color:#c1b458;
+				@include transition(all .5s ease);
+				&:hover {
+					border-color:#c1b458;
+				}
+			}
+			&.playlist {
+				color:#213f42;
+				@include transition(all .5s ease);
+				&:hover {
+					border-color:#213f42;
+				}
+			}
+			&.parcours {
+				color:#a85044;
+				@include transition(all .5s ease);
+				&:hover {
+					border-color:#a85044;
+				}
+			}
+			&.artistes {
+				color:#824e6c;
+				@include transition(all .5s ease);
+				&:hover {
+					border-color:#824e6c;
+				}
+			}
+			&.apropos {
+				color:#826244;
+				@include transition(all .5s ease);
+				&:hover {
+					border-color:#a85044;
+				}
+			}
+			&.artistes {
+				color:#824e6c;
+				@include transition(all .5s ease);
+				&:hover {
+					border-color:#824e6c;
+				}
+			}
+			&.apropos {
+				color:#826244;
+				@include transition(all .5s ease);
+				&:hover {
+					border-color:#826244;
+				}
+			}
+		}
 	}
 }
