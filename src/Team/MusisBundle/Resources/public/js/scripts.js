@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 	function panelManage(action, target) {
 		if (action == "toggle") {
+			$(".unfolded:not("+target+")").removeClass("unfolded");
 			$(target).toggleClass("unfolded");
 		} else if (action == "open") {
 			$(".unfolded").removeClass("unfolded");
@@ -17,7 +18,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		$(this).toggleClass("active");
 		var target = $(this).find(">a").attr("href");
-		alert(target);
 		panelManage("toggle",target);
 	});
 
