@@ -14,11 +14,17 @@ $(document).ready(function() {
 		}
 	}
 
+	var target = "";
 	$(".panel-menu li").click(function(e) {
 		e.preventDefault();
-		$(this).toggleClass("active");
-		var target = $(this).find(">a").attr("href");
-		panelManage("toggle",target);
+		if ($(this).find(">a.fa-search").length) {
+			$(this).next("li").trigger("click");	
+		}
+		else {
+			$(this).toggleClass("active");
+			target = $(this).find(">a").attr("href");
+			panelManage("toggle",target);
+		}
 	});
 
 	// LEAFLET
@@ -28,11 +34,11 @@ $(document).ready(function() {
 	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
 
 	var map = L.map('map');
-
+/*
 	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
-
+*/
 	L.Routing.control({
 		plan: L.Routing.plan(
 			[
@@ -53,9 +59,9 @@ $(document).ready(function() {
 		routeWhileDragging: false
 	}).addTo(map);
 
-
 	map.addLayer(layer);
 
+	//NOT WORKING
 	$(".leaflet-marker-icon").click(function () {
 		alert("test");
 		console.log("blop");

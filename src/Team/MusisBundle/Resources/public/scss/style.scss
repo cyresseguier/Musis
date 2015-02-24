@@ -33,7 +33,7 @@ html {
 }
 
 body {
-
+	overflow:hidden;
 }
 .rounded {
 	width:3em;
@@ -51,6 +51,5 @@ body {
 	min-height:100%;
 }
 .leaflet-top.leaflet-right {
-	margin-right:80px;
-	z-index:0;
+	display:none;
 }
