@@ -42,15 +42,18 @@
 		</section>
 		<nav class="panel-menu">
 			<ul>
-				<li><a href="#playlist" class="fa fa-search"></a></li>
-				<li><a href="#playlist" class="fa fa-arrow-left"></a></li>
-				<li><a href="#mainmenu" class="fa fa-navicon"></a></li>
-				<li><a href="#playlist" class="fa fa-map-marker"></a></li>
-				<li><a href="#play" class="fa fa-play"></a></li>
+				<li class="search"><a href="#playlist" class="fa fa-search"></a></li>
+				<li class="arrow"><a href="#playlist" class="fa fa-arrow-left"></a></li>
+				<li class="navicon"><a href="#mainmenu" class="fa fa-navicon"></a></li>
+				<li class="marker"><a href="#playlist" class="fa fa-map-marker"></a></li>
+				<li class="play"><a href="#playlist" class="fa fa-play"></a></li>
 			</ul>
 		</nav>		
 		<section class="panel-content" id="playlist">
-			<h2>Titre de la musique ici</h2>
+			<form id="search" method="post" action="">
+				<input placeholder="Rechercher..." type="text" id="search-input" />
+			</form>
+			<h2>Titre de la musique</h2>
 			<div id="controlers">
 				<input type="button" onclick="DZ.player.playAlbum(302127); return false;" value="Play Daft Punk - Discovery"/>
 				<input type="button" onclick="DZ.player.playAlbum(301775); return false;" value="Play Daft Punk - Homework"/>

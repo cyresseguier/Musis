@@ -15,7 +15,7 @@ $menu-width:70px;
 	position:fixed;
 	right:0;
 	top:0;
-	z-index:9999;
+	z-index:9998;
 	ul {
 		padding:0;
 		margin:0;
@@ -36,6 +36,13 @@ $menu-width:70px;
 			color:#757575;
 			outline:none;
 			display:block;
+		}
+		&.play {
+			position:absolute;
+			bottom:20px;
+			left:-3px;
+			width:$menu-width;
+			border-bottom:1px solid #e1e1e1;
 		}
 	}
 	.menu {
@@ -65,7 +72,7 @@ $menu-width:70px;
 	top:0;
 	@include box-sizing(border-box);
 	padding:15px 20px;
-	z-index:9998;
+	z-index:9997;
 	min-height:100%;
 	max-height:100%;
 	background:#fff;
@@ -76,9 +83,24 @@ $menu-width:70px;
 	&#mainmenu {
 		width:100%!important;
 		margin-right:-100%;
+		text-align:center;
 		&.unfolded {
 			margin-right:0;
 			padding-right:$menu-width;
+		}
+	}
+	#search {
+		margin-bottom:2em;
+		#search-input {
+			font-size:2.5em;
+			color:#666;
+			background:none;
+			border:none;
+			border-bottom:solid 1px #999;
+			outline:none;
+			display:block;
+			width:100%;
+			height:62px;
 		}
 	}
 }
@@ -90,6 +112,8 @@ $menu-width:70px;
 }
 
 #mainmenu {
+	display:table;
+	height:105%;
 	ul {
 		display:table-cell;
 		vertical-align:middle;
@@ -132,7 +156,7 @@ $menu-width:70px;
 			&.artistes {
 				color:#826244;
 				&:hover {
-					border-color:#a85044;
+					border-color:#826244;
 				}
 			}
 			&.apropos {

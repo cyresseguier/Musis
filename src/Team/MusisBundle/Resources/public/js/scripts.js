@@ -17,8 +17,8 @@ $(document).ready(function() {
 	var target = "";
 	$(".panel-menu li").click(function(e) {
 		e.preventDefault();
-		if ($(this).find(">a.fa-search").length) {
-			$(this).next("li").trigger("click");	
+		if ($(this).find(">a.fa-search,>a.fa-play").length) {
+			$(this).siblings(".arrow").trigger("click");	
 		}
 		else {
 			$(this).toggleClass("active");
