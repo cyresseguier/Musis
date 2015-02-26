@@ -9,10 +9,6 @@
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Antic+Slab' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="built/css/style.css" />
-		<script src="built/js/scripts.min.js"></script>
-		<script src="http://195.154.110.135:35729/livereload.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
   	</head>
 	<body>
 		<div id="dz-root"></div>	
@@ -25,7 +21,7 @@
 						<li><a href="#_">Découvrir un lieu</a></li>
 						<li><a href="#_">Choisir un itinéraire</a></li>
 						<li class="logo-placeholder">Logo</li>
-						<li><a href="#_">Voir tous les aritstes</a></li>
+						<li><a href="#_">Voir tous les artistes</a></li>
 						<li><a href="#_">Connaître Musis</a></li>
 					</ul>
 				</nav>
@@ -82,46 +78,10 @@
 				<li><a class="apropos" href="#_">Connaître Musis</a></li>
 			</ul>
 		</section>
-		
-		<script>
-			$(document).ready(function(){
-				$("#controlers input").attr('disabled', true);
-				$("#slider_seek").click(function(evt,arg){
-					var left = evt.offsetX;
-					console.log(evt.offsetX, $(this).width(), evt.offsetX/$(this).width());
-					DZ.player.seek((evt.offsetX/$(this).width()) * 100);
-				});
-			});
-			function event_listener_append() {
-				var pre = document.getElementById('event_listener');
-				var line = [];
-				for (var i = 0; i < arguments.length; i++) {
-					line.push(arguments[i]);
-				}
-				pre.innerHTML += line.join(' ') + "\n";
-			}
-			function onPlayerLoaded() {
-				$("#controlers input").attr('disabled', false);
-				event_listener_append('player_loaded');
-				DZ.Event.subscribe('current_track', function(arg){
-					event_listener_append('current_track', arg.index, arg.track.title, arg.track.album.title);
-				});
-				DZ.Event.subscribe('player_position', function(arg){
-					event_listener_append('position', arg[0], arg[1]);
-					$("#slider_seek").find('.bar').css('width', (100*arg[0]/arg[1]) + '%');
-				});
-		 
-				DZ.Event.subscribe('track_end', function() {
-					event_listener_append('track_end');
-				});
-			}
-			DZ.init({
-				appId  : '8',
-				channelUrl : 'http://developers.deezer.com/examples/channel.php',
-				player : {
-					onload : onPlayerLoaded
-				}
-			});
-		</script>
+
+		<script src="http://195.154.110.135:35729/livereload.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
+		<script src="built/js/scripts.min.js"></script>
 	</body>
 </html>
