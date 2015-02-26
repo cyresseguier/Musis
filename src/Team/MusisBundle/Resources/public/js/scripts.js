@@ -34,7 +34,7 @@ $(document).ready(function() {
 	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
 
 	var map = L.map('map');
-	
+
 	L.Routing.control({
 		plan: L.Routing.plan(
 			[
@@ -83,7 +83,8 @@ $(document).ready(function() {
 		$("#mainmenu").fadeOut();
 	});
 
-	//DEEZER PLAYER		
+	//DEEZER PLAYER	
+
 	$("#controlers input").attr('disabled', true);
 	$("#slider_seek").click(function(evt,arg){
 		var left = evt.offsetX;
@@ -124,3 +125,21 @@ $(document).ready(function() {
 		}
 	});
 });
+
+//MUSIS ENGINE MUSIC PART
+
+function loadPlaylist(tab,playlistName){
+
+	var playlist=[];
+	for (var i=0; i<tab.length; i++){
+		//tab[musics[playlist]][i];
+		/*if (tab[musics[playlist]][i]==playlistName){
+			playlist.push(tab.musics.link);
+			console.log(tab.music.link);
+		}*/
+	}
+
+	DZ.player.playTracks(playlist); 
+	
+	return false;
+}

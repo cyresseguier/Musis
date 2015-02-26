@@ -8,14 +8,14 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-    	$places = $this
+    	$musics = $this
 		  ->getDoctrine()
-		  ->getRepository('TeamMusisBundle:Place')
+		  ->getRepository('TeamMusisBundle:Music')
 		  ->findAll();
 		
         return $this->render('TeamMusisBundle:Musis:index.html.twig',
         	array(
-        		'places'=>$places
+        		'musics'=>$musics
         	));
     }
 }

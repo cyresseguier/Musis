@@ -8,7 +8,7 @@
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Antic+Slab' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="built/css/style.css" />
+		<link rel="stylesheet" href="{{ asset('built/css/style.css') }}" />
   	</head>
 	<body>
 		<div id="dz-root"></div>	
@@ -51,8 +51,7 @@
 			</form>
 			<h2>Titre de la musique</h2>
 			<div id="controlers">
-				<input type="button" onclick="DZ.player.playAlbum(302127); return false;" value="Play Daft Punk - Discovery"/>
-				<input type="button" onclick="DZ.player.playAlbum(301775); return false;" value="Play Daft Punk - Homework"/>
+				<input type="button" onclick="loadPlaylist(places,'Pigalle')" value="Play Tracks"/>
 				<br/>
 				<input type="button" onclick="DZ.player.play(); return false;" value="play"/>
 				<input type="button" onclick="DZ.player.pause(); return false;" value="pause"/>
@@ -79,9 +78,55 @@
 			</ul>
 		</section>
 
-		<script src="http://195.154.110.135:35729/livereload.js"></script>
+		<script>
+		// Temporary code
+		var musics = [];
+		{% for music in musics %}
+			musics.push({
+				title: '{{ music.title }}',
+				album: '{{ music.album }}',
+				link: '{{ music.title }}',
+				year: '{{ music.year }}',
+				lyrics: '{{ music.lyrics }}',
+				places: [
+					{% if music.musicsPlaces.count()>0 %}
+						{% for musicPlace in music.musicsPlaces %}
+							{
+								name:'{{ musicPlace.music.title }}',
+								link : '{{ musicPlace.music.link }}'
+							},
+						{% endfor %}
+					{% endif %}
+				],
+				playlists: [
+					{% if music.musicsPlaylists.count()>0 %}
+						{% for musicPlaylist in music.musicsPlaylists %}
+							{
+								name:'{{ musicPlaylist.playlist.name }}',
+								presentation : '{{ musicPlaylist.playlist.presentation }}'
+							},
+						{% endfor %}
+					{% endif %}
+				],
+				artists: [
+					{% if music.musicsArtists.count()>0 %}
+						{% for musicArtist in music.musicsArtists %}
+							{
+								id:'{{ musicArtist.artist.id }}',
+								name:'{{ musicArtist.artist.name }}'
+							},
+						{% endfor %}
+					{% endif %}
+				]
+			});
+		{% endfor %}
+		console.log(musics);
+		</script>
+
+		<!-- Please uncomment the following line if you need it :) ! -->
+		<!--<script src="http://195.154.110.135:35729/livereload.js"></script>-->
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
-		<script src="built/js/scripts.min.js"></script>
+		<script src="{{ asset('built/js/scripts.min.js') }}"></script>
 	</body>
 </html>
