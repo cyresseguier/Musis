@@ -132,13 +132,10 @@ function loadPlaylist(tab,playlistName){
 
 	var playlist=[];
 	for (var i=0; i<tab.length; i++){
-		//tab[musics[playlist]][i];
-		/*if (tab[musics[playlist]][i]==playlistName){
-			playlist.push(tab.musics.link);
-			console.log(tab.music.link);
-		}*/
+		if (tab[i].playlists[0].name==playlistName){
+			playlist.push(tab[i].link);
+		}
 	}
-
 	DZ.player.playTracks(playlist); 
 	
 	return false;
