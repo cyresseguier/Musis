@@ -35,35 +35,38 @@ $(document).ready(function() {
 
 	var map = L.map('map');
 
-	L.Routing.control({
+
+	var container=L.Routing.control({
 		plan: L.Routing.plan(
 			[
 				L.latLng(48.85837009999999, 2.2944813000000295),
 				L.latLng(48.851264, 2.3760990000000675),
 				L.latLng(48.85706949999999, 2.359624599999961),
-				L.latLng(48.8642701, 2.3534680999999864),
 				L.latLng(48.85837009999999, 2.2944813000000295)
 			],
 			{
-				createMarker: function(i, wp) {
-					return L.marker(wp.latLng, {
-						draggable: false,
-					});
-				},
-			}
-		),
+        		createMarker: function(i, wp) {
+            		return L.marker(wp.latLng, {
+                	draggable: false
+            		}).bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+        		}
+    		}),
+		addWaypoints: false,
 		routeWhileDragging: false
 	}).addTo(map);
 
-	map.addLayer(layer);
 
+	//var marker = L.marker([48.8642701, 2.3534680999999864]).addTo(map);
+
+	map.addLayer(layer);
+	
 	//NOT WORKING
-	$(".leaflet-marker-icon").click(function () {
+	/*$(".leaflet-marker-icon").click(function () {
 		alert("test");
 		console.log("blop");
 		panelManage("open");
 		DZ.player.playAlbum(302127);
-	});
+	});*/
 
 	// INTRO SCROLL
 
@@ -132,8 +135,10 @@ function loadPlaylist(tab,playlistName){
 
 	var playlist=[];
 	for (var i=0; i<tab.length; i++){
-		if (tab[i].playlists[0].name==playlistName){
-			playlist.push(tab[i].link);
+		for (var j=0; j<tab[i].playlists.length; j++){
+			if (tab[i].playlists[j].name==playlistName){
+				playlist.push(tab[i].link);
+			}
 		}
 	}
 	DZ.player.playTracks(playlist); 
