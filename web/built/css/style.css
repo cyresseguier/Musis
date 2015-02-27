@@ -350,7 +350,7 @@ summary {
 .panel-menu li.play {
   position: absolute;
   bottom: 20px;
-  left: -3px;
+  left: -5px;
   width: 70px;
   border-bottom: 1px solid #e1e1e1;
 }
