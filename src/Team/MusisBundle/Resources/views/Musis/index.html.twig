@@ -8,24 +8,20 @@
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Antic+Slab' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="built/css/style.css" />
-		<script src="built/js/scripts.min.js"></script>
-		<script src="http://195.154.110.135:35729/livereload.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
+		<link rel="stylesheet" href="{{ asset('built/css/style.css') }}" />
   	</head>
 	<body>
 		<div id="dz-root"></div>	
 		<!-- INTRO SCREEN -->
 		<section id="intro">
 			<header id="main">
-				<h1><img src="built/img/logo.png"/></h1>
+				<h1><img src="{{ asset('built/img/logo.png')}}"/></h1>
 				<nav class="main-menu">
 					<ul>
 						<li><a href="#_">Découvrir un lieu</a></li>
 						<li><a href="#_">Choisir un itinéraire</a></li>
 						<li class="logo-placeholder">Logo</li>
-						<li><a href="#_">Voir tous les aritstes</a></li>
+						<li><a href="#_">Voir tous les artistes</a></li>
 						<li><a href="#_">Connaître Musis</a></li>
 					</ul>
 				</nav>
@@ -55,6 +51,7 @@
 			</form>
 			<h2>Titre de la musique</h2>
 			<div id="controlers">
+				<input type="button" onclick="loadPlaylist(musics,'Bastille')" value="Play Tracks"/>
 				<br/>
 				<input type="button" onclick="DZ.player.playAlbum(302127); return false;" value="Daft Punk - Discovery"/>
 				<br/><br/>
@@ -74,46 +71,55 @@
 				<li><a class="apropos" href="#_">Connaître Musis</a></li>
 			</ul>
 		</section>
-		
+
 		<script>
-			$(document).ready(function(){
-				$("#controlers input").attr('disabled', true);
-				$("#slider_seek").click(function(evt,arg){
-					var left = evt.offsetX;
-					console.log(evt.offsetX, $(this).width(), evt.offsetX/$(this).width());
-					DZ.player.seek((evt.offsetX/$(this).width()) * 100);
-				});
+		// Temporary code
+		var musics = [];
+		{% for music in musics %}
+			musics.push({
+				title: '{{ music.title }}',
+				album: '{{ music.album }}',
+				link: '{{ music.link }}',
+				year: '{{ music.year }}',
+				lyrics: '{{ music.lyrics }}',
+				places: [
+					{% if music.musicsPlaces.count()>0 %}
+						{% for musicPlace in music.musicsPlaces %}
+							{
+								name:'{{ musicPlace.place.name }}',
+								coordLat: '{{ musicPlace.place.coordLat }}',
+								coordLong: '{{ musicPlace.place.coordLong }}'
+							},
+						{% endfor %}
+					{% endif %}
+				],
+				playlists: [
+					{% if music.musicsPlaylists.count()>0 %}
+						{% for musicPlaylist in music.musicsPlaylists %}
+							{
+								name:'{{ musicPlaylist.playlist.name }}',
+								presentation : '{{ musicPlaylist.playlist.presentation }}'
+							},
+						{% endfor %}
+					{% endif %}
+				],
+				artists: [
+					{% if music.musicsArtists.count()>0 %}
+						{% for musicArtist in music.musicsArtists %}
+							{
+								id:'{{ musicArtist.artist.id }}',
+								name:'{{ musicArtist.artist.name }}'
+							},
+						{% endfor %}
+					{% endif %}
+				]
 			});
-			function event_listener_append() {
-				var pre = document.getElementById('event_listener');
-				var line = [];
-				for (var i = 0; i < arguments.length; i++) {
-					line.push(arguments[i]);
-				}
-				pre.innerHTML += line.join(' ') + "\n";
-			}
-			function onPlayerLoaded() {
-				$("#controlers input").attr('disabled', false);
-				event_listener_append('player_loaded');
-				DZ.Event.subscribe('current_track', function(arg){
-					event_listener_append('current_track', arg.index, arg.track.title, arg.track.album.title);
-				});
-				DZ.Event.subscribe('player_position', function(arg){
-					event_listener_append('position', arg[0], arg[1]);
-					$("#slider_seek").find('.bar').css('width', (100*arg[0]/arg[1]) + '%');
-				});
-		 
-				DZ.Event.subscribe('track_end', function() {
-					event_listener_append('track_end');
-				});
-			}
-			DZ.init({
-				appId  : '8',
-				channelUrl : 'http://developers.deezer.com/examples/channel.php',
-				player : {
-					onload : onPlayerLoaded
-				}
-			});
+		{% endfor %}
 		</script>
+
+		<script src="http://195.154.110.135:35729/livereload.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
+		<script src="{{ asset('built/js/scripts.min.js') }}"></script>
 	</body>
 </html>
