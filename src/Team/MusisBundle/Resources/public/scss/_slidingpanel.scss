@@ -103,6 +103,30 @@ $menu-width:70px;
 			height:62px;
 		}
 	}
+	#slider_seek {
+		position:absolute!important;
+		bottom:84px;
+		width:90%;
+		border-radius:0;
+		.bar {
+			border-radius:0;
+			background:#d54c39;
+		}
+	}
+	#song-info {
+		position:absolute;
+		font-size:1.2em;
+		bottom:48px;
+		width:90%;
+		text-align:center;
+		.position {
+			float:left;
+		}
+		.length {
+			float:right;
+		}
+	}
+	
 }
 @media screen and (min-width:760px) {
 	.panel-content { width:50%; margin-right:-50%; }

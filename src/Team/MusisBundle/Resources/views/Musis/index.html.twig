@@ -57,9 +57,13 @@
 				<br/><br/>
 			</div>
 			<div id="slider_seek" class="progressbarplay" style="">
-			  <div class="bar" style="width: 0%;"></div>
+				<div class="bar" style="width: 0%;"></div>
 			</div>
-			event_listener : <br/>
+			<div id="song-info">
+				<div class="position"></div>
+				<div class="length"></div>
+				<div class="title"></div>
+			</div>
 			<pre id="event_listener" style="height:100px;overflow:auto;"></pre>
 		</section>
 		<section class="panel-content" id="mainmenu">
@@ -118,8 +122,8 @@
 		</script>
 
 		<script src="http://195.154.110.135:35729/livereload.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
 		<script src="{{ asset('built/js/scripts.min.js') }}"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	</body>
 </html>

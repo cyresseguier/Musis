@@ -27,18 +27,21 @@ $(document).ready(function() {
 		}
 	});
 
+	// PLAYER
+	
+	var playerButton = "";
 	$("li.play").click(function(e) {
+		playerButton = $(this).find(">a");
 		if (DZ.player.isPlaying()) {
 			DZ.player.pause();
-			$(this).find(">a").removeClass("fa-play");
-			$(this).find(">a").addClass("fa-pause");
+			playerButton.removeClass("fa-play").addClass("fa-pause");
 		} else {
 			DZ.player.play();
-			$(this).find(">a").removeClass("fa-pause");
-			$(this).find(">a").addClass("fa-play");
+			playerButton.removeClass("fa-pause").addClass("fa-play");
 		}
 		return false;
 	});
+
 
 	// LEAFLET
 
@@ -131,6 +134,7 @@ $(document).ready(function() {
 			line.push(arguments[i]);
 		}
 		pre.innerHTML += line.join(' ') + "\n";
+		$("#song-info .position").text(Math.floor(arguments[1]/60)+":"+(Math.floor(arguments[1])%60));
 	}
 
 	function onPlayerLoaded() {
@@ -138,6 +142,8 @@ $(document).ready(function() {
 		event_listener_append('player_loaded');
 		DZ.Event.subscribe('current_track', function(arg){
 			event_listener_append('current_track', arg.index, arg.track.title, arg.track.album.title);
+			$("#song-info .title").text(arg.track.artist.name+" - "+arg.track.title);
+			$("#song-info .length").text(Math.floor(arg.track.duration/60)+":"+(arg.track.duration%60));
 		});
 		DZ.Event.subscribe('player_position', function(arg){
 			event_listener_append('position', arg[0], arg[1]);
