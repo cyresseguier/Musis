@@ -86,7 +86,7 @@ $(document).ready(function() {
 
 	function setPlaylistRoute(Playlist){
 		var PlaylistRoute=[];
-		for(var i=0;i<Playlist.length;i++){
+		for(var i=0;i<(Playlist.length);i++){
 			PlaylistRoute.push(L.latLng(Playlist[i].places[0].coordLat,Playlist[i].places[0].coordLong));
 		}
 		// We close the route // WILL IMPROVE
@@ -173,16 +173,18 @@ $(document).ready(function() {
 			playlistLink.push(Playlist[i].link);
 		}
 
+		console.log(playlistLink);
 		DZ.player.playTracks(playlistLink); 
 	}	
 	
 	function playTrackByPlace(Place){
 		for (var i=0; i<globalPlaylist.length; i++){
-
 			//console.log(Place.lng);
 			//console.log(globalPlaylist[i].places[0].coordLong);
+
 			if(globalPlaylist[i].places[0].coordLong==Place.lng){
 				switchTrack(i,DZ.player.getCurrentIndex());
+				alert(globalPlaylist[i].title);
 			}
 		}
 	}
@@ -196,13 +198,12 @@ $(document).ready(function() {
 				DZ.player.next();
 			}
 		}
-		else if (id<position){
+		
+		if(id<position){
 			for(var j=id;j<position;j++){
 				DZ.player.prev();
 			}
 		}
-
-		else{}
 	}
 
 	//MUSIS ENGINE MUSIC PART
