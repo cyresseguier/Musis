@@ -173,7 +173,7 @@ $(document).ready(function() {
 			playlistLink.push(Playlist[i].link);
 		}
 
-		console.log(playlistLink);
+		//console.log(playlistLink);
 		DZ.player.playTracks(playlistLink); 
 	}	
 	
@@ -191,7 +191,7 @@ $(document).ready(function() {
 
 	// TO IMPROVE
 	function switchTrack(id,position){
-		console.log(id,position);
+		//console.log(id,position);
 
 		if (id>position){
 			for(var i=position;i<id;i++){
@@ -225,8 +225,24 @@ $(document).ready(function() {
 		createRouting(PlaylistRoute);
 		
 		globalPlaylist=playlist;
+		console.log(globalPlaylist);
 		return playlist;
 	};
+
+	//AJAX
+	$("#listAllParcours").click(function(){
+	    $.ajax({
+
+	    	url : path , 
+
+	    	type : 'GET', // Le type de la requête HTTP
+
+	    	dataType : 'html', // Le type de données à recevoir, ici, du HTML.
+
+			success: function(data) { $('#playlist').html(data); }
+
+		});
+	});
 
 });
 

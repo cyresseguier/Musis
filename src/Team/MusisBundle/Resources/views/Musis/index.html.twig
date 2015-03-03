@@ -46,10 +46,12 @@
 			</ul>
 		</nav>		
 
-		{% block panelContent %}
-			{{ include("TeamMusisBundle:Musis:playlist.html.twig") }}
-		{% endblock %}
+		<section class="panel-content" id="playlist">
+			<input type="button" id="listAllParcours" value="Voir tous les parcours"/>
+		</section>
 
+		<pre id="event_listener" style="height:100px;overflow:auto;"></pre>
+		
 		<section class="panel-content" id="mainmenu">
 			<ul>
 				<li><a class="accueil" href="#_">Accueil</a></li>
@@ -103,6 +105,8 @@
 				]
 			});
 		{% endfor %}
+
+		var path="{{ path('team_musis_listallplaylist') }}";
 		</script>
 
 		<!--<script src="http://195.154.110.135:35729/livereload.js"></script>-->
