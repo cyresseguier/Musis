@@ -8,14 +8,20 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-    	$musics = $this
-		  ->getDoctrine()
+        $orm=$this->getDoctrine();
+
+    	$musics = $orm
 		  ->getRepository('TeamMusisBundle:Music')
 		  ->findAll();
+
+        $playlists = $orm
+          ->getRepository('TeamMusisBundle:Playlist')
+          ->findAll();
 		
         return $this->render('TeamMusisBundle:Musis:index.html.twig',
         	array(
-        		'musics'=>$musics
+        		'musics'=>$musics,
+                'playlists'=>$playlists
         	));
     }
 }

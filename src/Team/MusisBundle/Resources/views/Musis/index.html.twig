@@ -47,6 +47,14 @@
 		</nav>		
 
 		<section class="panel-content" id="playlist">
+		
+	 	
+      {% for playlist in playlists %}
+
+      	<input type="button" class="listAllParcours" id="{{playlist.name}}" value="{{playlist.name}}"/>
+		
+      {% endfor %}
+
 			<input type="button" class="listAllParcours" id="Bastille" value="Voir tous les parcours"/>
 		</section>
 		
@@ -104,11 +112,12 @@
 			});
 		{% endfor %}
 
-		var path="{{ path('team_musis_listallplaylist', { 'name': 'Bastille'})}}";
 		</script>
 
 		<!--<script src="http://195.154.110.135:35729/livereload.js"></script>-->
 		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
+		<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 		<script src="{{ asset('built/js/scripts.min.js') }}"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	</body>

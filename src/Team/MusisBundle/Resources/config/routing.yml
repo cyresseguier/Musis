@@ -5,3 +5,5 @@ team_musis_homepage:
 team_musis_listallplaylist:
     path:     /listAllPlaylist/{name}
     defaults: { _controller: TeamMusisBundle:ListAllPlaylist:index }
+    options:
+        expose: true

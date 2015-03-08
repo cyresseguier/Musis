@@ -147,7 +147,13 @@ $(document).ready(function() {
 			event_listener_append('current_track', arg.index, arg.track.title, arg.track.album.title);
 
 			$("#song-info .title").text(arg.track.title+" - "+arg.track.artist.name);
-			$("#song-info .length").text(Math.floor(arg.track.duration/60)+":"+(arg.track.duration%60));
+
+			min=Math.floor(arg.track.duration/60);
+			sec=Math.floor(arg.track.duration%60);
+
+			if(sec<10) sec="0"+sec;
+			if (!isNaN(min)||!isNaN(sec))
+				$("#song-info .length").text(min+":"+sec);
 		});
 		DZ.Event.subscribe('player_position', function(arg){
 			event_listener_append('position', arg[0], arg[1]);
@@ -233,7 +239,7 @@ $(document).ready(function() {
 	$(".listAllParcours").click(function(){
 		var playlistName=this.id;
 	    $.ajax({
-	    	url : path, 
+	    	url : Routing.generate('team_musis_listallplaylist',{ 'name':playlistName }), 
 	    	type : 'GET', 
 	    	dataType : 'html',
 
