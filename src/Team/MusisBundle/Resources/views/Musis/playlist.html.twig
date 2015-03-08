@@ -2,13 +2,20 @@
 <form id="search" method="post" action="">
 	<input placeholder="Rechercher..." type="text" id="search-input" />
 </form>
-<h2>Titre de la musique</h2>
-<div id="controlers">
-	<input type="button" onclick="loadPlaylist(musics,'Bastille')" value="Play Tracks"/>
-	<br/>
-	<input type="button" onclick="DZ.player.playAlbum(302127); return false;" value="Daft Punk - Discovery"/>
-	<br/><br/>
+<h2>{{playlist_name}}</h2>
+
+<div id="trackListing">
+	 <ul id="trackList">
+	 	
+      {% for item in playlist %}
+
+        <li id="{{loop.index-1}}" class="trackInfos">{{ item.music.title }}</li>
+
+      {% endfor %}
+
+    </ul>
 </div>
+
 <div id="slider_seek" class="progressbarplay" style="">
 	<div class="bar" style="width: 0%;"></div>
 </div>
@@ -17,4 +24,4 @@
 	<div class="length"></div>
 	<div class="title"></div>
 </div>
-<pre id="event_listener" style="height:100px;overflow:auto;"></pre>
+

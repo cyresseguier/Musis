@@ -121,14 +121,15 @@ $(document).ready(function() {
 	});
 
 	function event_listener_append() {
-		var pre = document.getElementById('event_listener');
+		/*var pre = document.getElementById('event_listener');
 		var line = [];
 		var min,sec;
 
 		for (var i = 0; i < arguments.length; i++) {
 			line.push(arguments[i]);
 		}
-		pre.innerHTML += line.join(' ') + "\n";
+		pre.innerHTML += line.join(' ') + "\n";*/
+
 		min=Math.floor(arguments[1]/60);
 		sec=Math.floor(arguments[1])%60;
 
@@ -145,7 +146,7 @@ $(document).ready(function() {
 		DZ.Event.subscribe('current_track', function(arg){
 			event_listener_append('current_track', arg.index, arg.track.title, arg.track.album.title);
 
-			$("#song-info .title").text(arg.track.artist.name+" - "+arg.track.title);
+			$("#song-info .title").text(arg.track.title+" - "+arg.track.artist.name);
 			$("#song-info .length").text(Math.floor(arg.track.duration/60)+":"+(arg.track.duration%60));
 		});
 		DZ.Event.subscribe('player_position', function(arg){
@@ -184,14 +185,13 @@ $(document).ready(function() {
 
 			if(globalPlaylist[i].places[0].coordLong==Place.lng){
 				switchTrack(i,DZ.player.getCurrentIndex());
-				alert(globalPlaylist[i].title);
+				//alert(globalPlaylist[i].title);
 			}
 		}
 	}
 
 	// TO IMPROVE
 	function switchTrack(id,position){
-		//console.log(id,position);
 
 		if (id>position){
 			for(var i=position;i<id;i++){
@@ -225,24 +225,28 @@ $(document).ready(function() {
 		createRouting(PlaylistRoute);
 		
 		globalPlaylist=playlist;
-		console.log(globalPlaylist);
+		//console.log(globalPlaylist);
 		return playlist;
 	};
 
 	//AJAX
-	$("#listAllParcours").click(function(){
+	$(".listAllParcours").click(function(){
+		var playlistName=this.id;
 	    $.ajax({
+	    	url : path, 
+	    	type : 'GET', 
+	    	dataType : 'html',
 
-	    	url : path , 
+			success: function(data) { 
+				$('#playlist').html(data); 
+				loadPlaylist(musics,playlistName); 
 
-	    	type : 'GET', // Le type de la requête HTTP
-
-	    	dataType : 'html', // Le type de données à recevoir, ici, du HTML.
-
-			success: function(data) { $('#playlist').html(data); }
-
+				//Interface
+				$(".trackInfos").click(function(e){
+					switchTrack(this.id,DZ.player.getCurrentIndex());
+				});
+			}
 		});
 	});
-
 });
 

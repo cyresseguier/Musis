@@ -3,5 +3,5 @@ team_musis_homepage:
     defaults: { _controller: TeamMusisBundle:Default:index }
 
 team_musis_listallplaylist:
-    path:     /listAllPlaylist
+    path:     /listAllPlaylist/{name}
     defaults: { _controller: TeamMusisBundle:ListAllPlaylist:index }

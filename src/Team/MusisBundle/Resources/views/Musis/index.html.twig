@@ -47,10 +47,8 @@
 		</nav>		
 
 		<section class="panel-content" id="playlist">
-			<input type="button" id="listAllParcours" value="Voir tous les parcours"/>
+			<input type="button" class="listAllParcours" id="Bastille" value="Voir tous les parcours"/>
 		</section>
-
-		<pre id="event_listener" style="height:100px;overflow:auto;"></pre>
 		
 		<section class="panel-content" id="mainmenu">
 			<ul>
@@ -106,7 +104,7 @@
 			});
 		{% endfor %}
 
-		var path="{{ path('team_musis_listallplaylist') }}";
+		var path="{{ path('team_musis_listallplaylist', { 'name': 'Bastille'})}}";
 		</script>
 
 		<!--<script src="http://195.154.110.135:35729/livereload.js"></script>-->
