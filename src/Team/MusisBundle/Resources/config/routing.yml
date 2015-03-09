@@ -3,7 +3,13 @@ team_musis_homepage:
     defaults: { _controller: TeamMusisBundle:Default:index }
 
 team_musis_listallplaylist:
-    path:     /listAllPlaylist/{name}
-    defaults: { _controller: TeamMusisBundle:ListAllPlaylist:index }
+    path:     /Playlists/
+    defaults: { _controller: TeamMusisBundle:Playlists:index }
+    options:
+        expose: true	
+
+team_musis_parcours:
+    path:     /Parcours/{name}
+    defaults: { _controller: TeamMusisBundle:Parcours:index }
     options:
         expose: true

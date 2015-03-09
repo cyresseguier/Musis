@@ -70,6 +70,7 @@ $menu-width:70px;
 	position:absolute;
 	right:0;
 	top:0;
+	overflow: scroll;
 	@include box-sizing(border-box);
 	padding:15px 20px;
 	z-index:9997;
@@ -126,7 +127,9 @@ $menu-width:70px;
 			float:right;
 		}
 	}
-	
+	#playlistListe {
+		
+	}
 }
 @media screen and (min-width:760px) {
 	.panel-content { width:50%; margin-right:-50%; }

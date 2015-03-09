@@ -236,23 +236,49 @@ $(document).ready(function() {
 	};
 
 	//AJAX
-	$(".listAllParcours").click(function(){
-		var playlistName=this.id;
-	    $.ajax({
-	    	url : Routing.generate('team_musis_listallplaylist',{ 'name':playlistName }), 
+	function toAllParcours(){
+		$.ajax({
+	    	url : Routing.generate('team_musis_listallplaylist'), 
 	    	type : 'GET', 
 	    	dataType : 'html',
 
 			success: function(data) { 
-				$('#playlist').html(data); 
+				$('#panel-content').html(data); 
+				$(".listAllParcours").click(function(e){
+					listAllParcours(this);			
+				});
+			}
+		});
+
+	}
+
+	function listAllParcours(elt){
+		var playlistName=elt.id;
+
+	    $.ajax({
+	    	url : Routing.generate('team_musis_parcours',{ 'name':playlistName }), 
+	    	type : 'GET', 
+	    	dataType : 'html',
+
+			success: function(data) { 
+				$('#panel-content').html(data); 
 				loadPlaylist(musics,playlistName); 
 
 				//Interface
 				$(".trackInfos").click(function(e){
 					switchTrack(this.id,DZ.player.getCurrentIndex());
 				});
+				$(".toAllParcours").click(function(e){
+					toAllParcours();			
+				});
 			}
 		});
+	}
+
+	$(".toAllParcours").click(function(){
+		toAllParcours();			
 	});
+
+	
 });
 

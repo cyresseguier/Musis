@@ -38,24 +38,16 @@
 		</section>
 		<nav class="panel-menu">
 			<ul>
-				<li class="search"><a href="#playlist" class="fa fa-search"></a></li>
-				<li class="arrow"><a href="#playlist" class="fa fa-arrow-left"></a></li>
+				<li class="search"><a href="#panel-content" class="fa fa-search"></a></li>
+				<li class="arrow"><a href="#panel-content" class="fa fa-arrow-left"></a></li>
 				<li class="navicon"><a href="#mainmenu" class="fa fa-navicon"></a></li>
-				<li class="marker"><a href="#playlist" class="fa fa-map-marker"></a></li>
-				<li class="play"><a href="#playlist" class="fa fa-play"></a></li>
+				<li class="marker"><a href="#panel-content" class="fa fa-map-marker"></a></li>
+				<li class="play"><a href="#panel-content" class="fa fa-play"></a></li>
 			</ul>
 		</nav>		
 
-		<section class="panel-content" id="playlist">
-		
-	 	
-      {% for playlist in playlists %}
-
-      	<input type="button" class="listAllParcours" id="{{playlist.name}}" value="{{playlist.name}}"/>
-		
-      {% endfor %}
-
-			<input type="button" class="listAllParcours" id="Bastille" value="Voir tous les parcours"/>
+		<section class="panel-content" id="panel-content">
+			<input type="button" class="toAllParcours" value="Commencer l'exploration"/>
 		</section>
 		
 		<section class="panel-content" id="mainmenu">
@@ -68,57 +60,12 @@
 			</ul>
 		</section>
 
-		<script>
-		// Temporary code
-		var musics = [];
-		{% for music in musics %}
-			musics.push({
-				title: '{{ music.title }}',
-				album: '{{ music.album }}',
-				link: '{{ music.link }}',
-				year: '{{ music.year }}',
-				lyrics: '{{ music.lyrics }}',
-				places: [
-					{% if music.musicsPlaces.count()>0 %}
-						{% for musicPlace in music.musicsPlaces %}
-							{
-								name:'{{ musicPlace.place.name }}',
-								coordLat: '{{ musicPlace.place.coordLat }}',
-								coordLong: '{{ musicPlace.place.coordLong }}'
-							},
-						{% endfor %}
-					{% endif %}
-				],
-				playlists: [
-					{% if music.musicsPlaylists.count()>0 %}
-						{% for musicPlaylist in music.musicsPlaylists %}
-							{
-								name:'{{ musicPlaylist.playlist.name }}',
-								presentation : '{{ musicPlaylist.playlist.presentation }}'
-							},
-						{% endfor %}
-					{% endif %}
-				],
-				artists: [
-					{% if music.musicsArtists.count()>0 %}
-						{% for musicArtist in music.musicsArtists %}
-							{
-								id:'{{ musicArtist.artist.id }}',
-								name:'{{ musicArtist.artist.name }}'
-							},
-						{% endfor %}
-					{% endif %}
-				]
-			});
-		{% endfor %}
-
-		</script>
-
 		<!--<script src="http://195.154.110.135:35729/livereload.js"></script>-->
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="http://cdn-files.deezer.com/js/min/dz.js"></script>
 		<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 		<script src="{{ asset('built/js/scripts.min.js') }}"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	
 	</body>
 </html>

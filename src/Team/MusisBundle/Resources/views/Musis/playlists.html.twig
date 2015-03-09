@@ -1,0 +1,52 @@
+<section class="playlistListing" id="playlistListe">
+	{% for playlist in playlists %}
+
+		<input type="button" class="listAllParcours" id="{{playlist.name}}" value="{{playlist.name}}"/>
+
+	{% endfor %}
+</section>
+<script>
+		// Temporary code
+		var musics = [];
+		{% for music in musics %}
+			musics.push({
+				title: '{{ music.title }}',
+				album: '{{ music.album }}',
+				link: '{{ music.link }}',
+				year: '{{ music.year }}',
+				lyrics: '{{ music.lyrics }}',
+				places: [
+					{% if music.musicsPlaces.count()>0 %}
+						{% for musicPlace in music.musicsPlaces %}
+							{
+								name:'{{ musicPlace.place.name }}',
+								coordLat: '{{ musicPlace.place.coordLat }}',
+								coordLong: '{{ musicPlace.place.coordLong }}'
+							},
+						{% endfor %}
+					{% endif %}
+				],
+				playlists: [
+					{% if music.musicsPlaylists.count()>0 %}
+						{% for musicPlaylist in music.musicsPlaylists %}
+							{
+								name:'{{ musicPlaylist.playlist.name }}',
+								presentation : '{{ musicPlaylist.playlist.presentation }}'
+							},
+						{% endfor %}
+					{% endif %}
+				],
+				artists: [
+					{% if music.musicsArtists.count()>0 %}
+						{% for musicArtist in music.musicsArtists %}
+							{
+								id:'{{ musicArtist.artist.id }}',
+								name:'{{ musicArtist.artist.name }}'
+							},
+						{% endfor %}
+					{% endif %}
+				]
+			});
+		{% endfor %}
+
+</script>
