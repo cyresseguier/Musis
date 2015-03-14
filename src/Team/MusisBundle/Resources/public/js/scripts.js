@@ -243,7 +243,9 @@ $(document).ready(function() {
 	    	dataType : 'html',
 
 			success: function(data) { 
-				$('#panel-content').html(data); 
+				$('#searchElement').html(data);
+				panelManage("close","#panel-content");
+				panelManage("open","#searchElement");
 				$(".listAllParcours").click(function(e){
 					listAllParcours(this);			
 				});
@@ -262,6 +264,9 @@ $(document).ready(function() {
 
 			success: function(data) { 
 				$('#panel-content').html(data); 
+				panelManage("close","#searchElement");
+				panelManage("open","#panel-content");
+				
 				loadPlaylist(musics,playlistName); 
 
 				//Interface

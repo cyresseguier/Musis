@@ -95,7 +95,6 @@ $menu-width:70px;
 	#search {
 		margin-bottom:2em;
 		margin-top:15px;
-		border-bottom:solid 1px #999;
 		#search-input {
 			padding-left:1em;
 			font-size:2em;
@@ -132,8 +131,6 @@ $menu-width:70px;
 			float:right;
 		}
 	}
-	#playlistListe {
-	}
 	#song-info {
 		position:absolute;
 		font-size:1.2em;
@@ -160,16 +157,46 @@ $menu-width:70px;
 		}
 	}
 	h2 {
+		background:image-url('separateur.jpg') center bottom no-repeat;
 		text-align:center;
 		line-height:1.3em;
+		padding-bottom:1em;
+		margin-bottom:1em;
 		color:#555;
 	}
-	#trackList {
-		border:1px solid #555;
-		width:80%;
-		max-height:400px;
-		overflow-y:scroll;
+	#trackListing {
+		position:relative;
+		width:246px;
 		margin:2em auto;
+		&:before {
+			content:"";
+			display:block;
+			background:image-url('panel-top.jpg');
+			width:245px;
+			height:6px;
+			position:absolute;
+			top:0;
+			left:0;
+		}
+		&:after {
+			content:"";
+			display:block;
+			background:image-url('panel-bottom.jpg');
+			width:245px;
+			height:6px;
+			position:absolute;
+			bottom:0;
+			left:0;
+		}
+	}
+	#trackList {
+		border-left:1px solid #c8c8c8;
+		border-right:1px solid #c8c8c8;
+		@include box-sizing(border-box);
+		max-height:400px;
+		width:245px;
+		overflow-y:auto;
+		overflow-x:hidden;
 		padding:1em;
 		li {
 			list-style-type:none;
@@ -182,14 +209,39 @@ $menu-width:70px;
 			.track-number {
 				margin-right:10px;	
 				font-weight:bold;
+				display:block;
+				width: 10%;
+				float: left;
+				height: 3em;
 			}
 			.track-title {
 				font-weight:bold;
 			}
+			.track-artist {
+				font-style:italic;
+			}
 		}
 	}
-	#playlistListe {
-		
+	.playlist-top {
+		margin-bottom:1em;
+		min-height:image-height('top-pin.jpg');
+		background:image-url('top-pin.jpg') center center no-repeat;
+		color:#a85044;
+		text-align:center;
+		text: {
+			decoration:underline;
+			transform:uppercase;
+		}
+		.playlist-length {
+			text-align: right;
+			width: 50%;
+			padding-right: 1.2em;
+			@include box-sizing(border-box);
+		}
+	}
+	.playlist-description {
+		padding:0 3em;
+		text-align:justify;
 	}
 }
 @media screen and (min-width:760px) {

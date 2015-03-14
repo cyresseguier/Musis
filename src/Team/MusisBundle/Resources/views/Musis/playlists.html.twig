@@ -1,9 +1,15 @@
 <section class="playlistListing" id="playlistListe">
-	{% for playlist in playlists %}
 
-		<input type="button" class="listAllParcours" id="{{playlist.name}}" value="{{playlist.name}}"/>
+	<div class="elementContainer">
+		{% for playlist in playlists %}
+			<div class="listAllParcours" id="{{playlist.name}}">
+			<!--<input type="button" class="listAllParcours" id="{{playlist.name}}" value="{{playlist.name}}"/>-->
+			<h2>{{playlist.name}}</h2>
+			<h3>{{playlist.presentation}}</h3>
+			</div>
+		{% endfor %}
+	</div>
 
-	{% endfor %}
 </section>
 <script>
 		// Temporary code

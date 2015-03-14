@@ -2,18 +2,30 @@
 	<form id="search" method="post" action="">
 		<input placeholder="Rechercher..." type="text" id="search-input" />
 	</form>
+	<div class="playlist-top">
+		<div class="playlist-length">
+			{{ playlist|length }} titres
+		</div>
+	</div>
+
 	<h2>{{playlist_name}}</h2>
 
+	<p class="playlist-description">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet metus in iaculis congue. Vivamus placerat est massa, at lacinia mi rutrum sit amet. Donec facilisis auctor nibh eget posuere. Sed interdum sodales libero nec aliquam. Donec consectetur sit amet lectus eget malesuada.
+	</p>
+
 	<div id="trackListing">
-		 <ul id="trackList">
-		 	
-	      {% for item in playlist %}
+		<ul id="trackList">
 
-	        <li id="{{loop.index-1}}" class="trackInfos"><span class="track-number">{{loop.index-1 +1}}</span><span class="track-title">{{ item.music.title }}</span></li>
 
-	      {% endfor %}
+		{% for item in playlist %}
 
-	    </ul>
+			<li id="{{loop.index-1}}" class="trackInfos"><span class="track-number">{{loop.index-1 +1}}</span><span class="track-title">{{ item.music.title }}</span><br/><span class="track-artist">{{ item.music.musicsArtists[0].artist.name }}</span></li>
+
+				
+		  {% endfor %}
+
+		</ul>
 	</div>
 	<input type="button" class="toAllParcours" value="Retour à tous les parcours"/>
 
