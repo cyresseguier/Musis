@@ -279,3 +279,4 @@ $(document).ready(function() {
 		toAllParcours();			
 	});
 });
+

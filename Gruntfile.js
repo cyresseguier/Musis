@@ -87,6 +87,7 @@ module.exports = function(grunt) {
                                 tasks: ['jshint:defaults','clean:concat','concat'],
                                 options: {
                                         spawn: false,
+					reload: true
                                 },
                         },
                         images: {

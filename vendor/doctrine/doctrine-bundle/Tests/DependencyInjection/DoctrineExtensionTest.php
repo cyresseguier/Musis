@@ -39,6 +39,17 @@ class DoctrineExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', $container->getParameter('doctrine.default_connection'), '->load() overrides existing configuration options');
     }
 
+    /**
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Configuring the ORM layer requires to configure the DBAL layer as well.
+     */
+    public function testOrmRequiresDbal()
+    {
+        $extension = new DoctrineExtension();
+
+        $extension->load(array(array('orm' => array('auto_mapping' => true))), $this->getContainer());
+    }
+
     public function getAutomappingConfigurations()
     {
         return array(
@@ -217,8 +228,12 @@ class DoctrineExtensionTest extends \PHPUnit_Framework_TestCase
 
         $definition = $container->getDefinition('doctrine.orm.default_entity_manager');
         $this->assertEquals('%doctrine.orm.entity_manager.class%', $definition->getClass());
-        $this->assertEquals('%doctrine.orm.entity_manager.class%', $definition->getFactoryClass());
-        $this->assertEquals('create', $definition->getFactoryMethod());
+        if (method_exists($definition, 'getFactory')) {
+            $this->assertEquals(array('%doctrine.orm.entity_manager.class%', 'create'), $definition->getFactory());
+        } else {
+            $this->assertEquals('%doctrine.orm.entity_manager.class%', $definition->getFactoryClass());
+            $this->assertEquals('create', $definition->getFactoryMethod());
+        }
 
         $this->assertEquals(array('default' => 'doctrine.orm.default_entity_manager'), $container->getParameter('doctrine.entity_managers'), "Set of the existing EntityManagers names is incorrect.");
         $this->assertEquals('%doctrine.entity_managers%', $container->getDefinition('doctrine')->getArgument(2), "Set of the existing EntityManagers names is incorrect.");
@@ -284,8 +299,12 @@ class DoctrineExtensionTest extends \PHPUnit_Framework_TestCase
 
         $definition = $container->getDefinition('doctrine.orm.default_entity_manager');
         $this->assertEquals('%doctrine.orm.entity_manager.class%', $definition->getClass());
-        $this->assertEquals('%doctrine.orm.entity_manager.class%', $definition->getFactoryClass());
-        $this->assertEquals('create', $definition->getFactoryMethod());
+        if (method_exists($definition, 'getFactory')) {
+            $this->assertEquals(array('%doctrine.orm.entity_manager.class%', 'create'), $definition->getFactory());
+        } else {
+            $this->assertEquals('%doctrine.orm.entity_manager.class%', $definition->getFactoryClass());
+            $this->assertEquals('create', $definition->getFactoryMethod());
+        }
 
         $this->assertDICConstructorArguments($definition, array(
             new Reference('doctrine.dbal.default_connection'), new Reference('doctrine.orm.default_configuration'),
@@ -427,6 +446,39 @@ class DoctrineExtensionTest extends \PHPUnit_Framework_TestCase
         $calls = $container->getDefinition('doctrine.orm.default_metadata_driver')->getMethodCalls();
         $this->assertEquals('doctrine.orm.default_annotation_metadata_driver', (string) $calls[0][1][0]);
         $this->assertEquals('Fixtures\Bundles\Vendor\AnnotationsBundle\Entity', $calls[0][1][1]);
+    }
+
+    public function testCacheConfiguration()
+    {
+        $container = $this->getContainer();
+        $extension = new DoctrineExtension();
+
+        $config = $this->getConnectionConfig();
+        $config['orm'] = array(
+            'metadata_cache_driver' => array(
+                'cache_provider' => 'metadata_cache',
+            ),
+            'query_cache_driver' => array(
+                'cache_provider' => 'query_cache',
+            ),
+            'result_cache_driver' => array(
+                'cache_provider' => 'result_cache',
+            ),
+        );
+
+        $extension->load(array($config), $container);
+
+        $this->assertTrue($container->hasAlias('doctrine.orm.default_metadata_cache'));
+        $alias = $container->getAlias('doctrine.orm.default_metadata_cache');
+        $this->assertEquals('doctrine_cache.providers.metadata_cache', (string) $alias);
+
+        $this->assertTrue($container->hasAlias('doctrine.orm.default_query_cache'));
+        $alias = $container->getAlias('doctrine.orm.default_query_cache');
+        $this->assertEquals('doctrine_cache.providers.query_cache', (string) $alias);
+
+        $this->assertTrue($container->hasAlias('doctrine.orm.default_result_cache'));
+        $alias = $container->getAlias('doctrine.orm.default_result_cache');
+        $this->assertEquals('doctrine_cache.providers.result_cache', (string) $alias);
     }
 
     private function getContainer($bundles = 'YamlBundle', $vendor = null)

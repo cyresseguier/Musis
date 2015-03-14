@@ -39,7 +39,7 @@ rm -rf /tmp/Symfony
 mkdir /tmp/Symfony
 
 # Create project
-composer.phar create-project -n symfony/framework-standard-edition /tmp/Symfony $2
+composer create-project -n symfony/framework-standard-edition /tmp/Symfony $2
 
 if [ 0 -ne $? ]; then
     echo "\033[37;41mVersion $2 does not exist\033[0m"
@@ -60,10 +60,14 @@ cd /tmp/Symfony
 TARGET=/tmp/Symfony/vendor
 
 # Doctrine
-cd $TARGET/doctrine/orm && rm -rf UPGRADE* build* bin tests tools lib/vendor
-cd $TARGET/doctrine/dbal && rm -rf bin build* tests lib/vendor
+cd $TARGET/doctrine/orm && rm -rf UPGRADE* build* tests tools lib/vendor
+cd $TARGET/doctrine/dbal && rm -rf build* tests lib/vendor
 cd $TARGET/doctrine/common && rm -rf build* tests lib/vendor
-cd $TARGET/doctrine/doctrine-bundle && rm -rf Doctrine/Bundle/DoctrineBundle/Tests Doctrine/Bundle/DoctrineBundle/Resources/doc
+if [ -d $TARGET/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle ]; then
+    cd $TARGET/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle && rm -rf Tests Resources/doc
+else
+    cd $TARGET/doctrine/doctrine-bundle && rm -rf Tests Resources/doc
+fi
 
 # kriswallsmith
 cd $TARGET/kriswallsmith/assetic && rm -rf CHANGELOG* phpunit.xml* tests docs
@@ -110,6 +114,7 @@ find $TARGET -name .gitignore | xargs rm -rf -
 find $TARGET -name .gitmodules | xargs rm -rf -
 find $TARGET -name .svn | xargs rm -rf -
 
+# With vendors
 cd /tmp
 tar zcpf $DIR/Symfony_Standard_Vendors_$VERSION.tgz Symfony
 sudo rm -f $DIR/Symfony_Standard_Vendors_$VERSION.zip

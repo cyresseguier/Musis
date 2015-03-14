@@ -1,0 +1,27 @@
+
+<form id="search" method="post" action="">
+	<input placeholder="Rechercher..." type="text" id="search-input" />
+</form>
+<h2>{{playlist_name}}</h2>
+
+<div id="trackListing">
+	 <ul id="trackList">
+	 	
+      {% for item in playlist %}
+
+        <li id="{{loop.index-1}}" class="trackInfos">{{ item.music.title }}</li>
+
+      {% endfor %}
+
+    </ul>
+</div>
+
+<div id="slider_seek" class="progressbarplay" style="">
+	<div class="bar" style="width: 0%;"></div>
+</div>
+<div id="song-info">
+	<div class="position"></div>
+	<div class="length"></div>
+	<div class="title"></div>
+</div>
+

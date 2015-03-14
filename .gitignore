@@ -24,18 +24,15 @@
 
 # Assets and user uploads
 /web/bundles/
-/web/uploads/
+/web/built/
 
 # PHPUnit
 /app/phpunit.xml
 /phpunit.xml
+/app/config/parameters.yml
 
 # Build data
 /build/
-#/web/built/
-
-# Composer PHAR
-/composer.phar
 
 # SASS
 /.sass-cache/

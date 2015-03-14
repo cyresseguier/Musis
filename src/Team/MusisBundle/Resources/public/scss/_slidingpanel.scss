@@ -102,6 +102,7 @@ $menu-width:70px;
 			color:#666;
 			background:none;
 			border:none;
+			border-bottom:solid 1px #999;
 			outline:none;
 			display:block;
 			width:100%;
@@ -117,6 +118,21 @@ $menu-width:70px;
 			border-radius:0;
 			background:#d54c39;
 		}
+	}
+	#song-info {
+		position:absolute;
+		font-size:1.2em;
+		bottom:48px;
+		width:90%;
+		text-align:center;
+		.position {
+			float:left;
+		}
+		.length {
+			float:right;
+		}
+	}
+	#playlistListe {
 	}
 	#song-info {
 		position:absolute;
