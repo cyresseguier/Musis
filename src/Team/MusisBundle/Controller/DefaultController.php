@@ -8,9 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-
-        return $this->render('TeamMusisBundle:Musis:index.html.twig',
-        	array( 
-        	));
+        return $this->render('TeamMusisBundle:Musis:index.html.twig');
     }
 }

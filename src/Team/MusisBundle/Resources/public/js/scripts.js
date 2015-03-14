@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 	function panelManage(action, target) {
 		if (action == "toggle") {
+			$(".unfolded:not("+target+")").removeClass("unfolded");
 			$(target).toggleClass("unfolded");
 		} else if (action == "open") {
 			$(".unfolded").removeClass("unfolded");
@@ -13,13 +14,34 @@ $(document).ready(function() {
 		}
 	}
 
+	var target = "";
 	$(".panel-menu li").click(function(e) {
 		e.preventDefault();
-		$(this).toggleClass("active");
-		var target = $(this).find(">a").attr("href");
-		alert(target);
-		panelManage("toggle",target);
+		if ($(this).find(">a.fa-search").length) {
+			$(this).siblings(".arrow").trigger("click");	
+		}
+		else if (!$(this).hasClass("play")) {
+			$(this).toggleClass("active");
+			target = $(this).find(">a").attr("href");
+			panelManage("toggle",target);
+		}
 	});
+
+	// PLAYER
+	
+	var playerButton = "";
+	$("li.play").click(function(e) {
+		playerButton = $(this).find(">a");
+		if (DZ.player.isPlaying()) {
+			DZ.player.pause();
+			playerButton.removeClass("fa-play").addClass("fa-pause");
+		} else {
+			DZ.player.play();
+			playerButton.removeClass("fa-pause").addClass("fa-play");
+		}
+		return false;
+	});
+
 
 	// LEAFLET
 
@@ -27,42 +49,50 @@ $(document).ready(function() {
 
 	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
 
-	var map = L.map('map');
+	var map = L.map('map').setView([48.85, 2.33], 13);
 
-	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-	}).addTo(map);
+	var wayLayer;
 
-	L.Routing.control({
-		plan: L.Routing.plan(
-			[
-				L.latLng(48.85837009999999, 2.2944813000000295),
-				L.latLng(48.851264, 2.3760990000000675),
-				L.latLng(48.85706949999999, 2.359624599999961),
-				L.latLng(48.8642701, 2.3534680999999864),
-				L.latLng(48.85837009999999, 2.2944813000000295)
-			],
-			{
-				createMarker: function(i, wp) {
-					return L.marker(wp.latLng, {
-						draggable: false,
-					});
-				},
-			}
-		),
-		routeWhileDragging: false
-	}).addTo(map);
+	function createRouting(PlaylistRoute){	
+		if (wayLayer!=null) map.removeLayer(wayLayer);
+		
+		wayLayer=L.Routing.control({
+			plan: L.Routing.plan(
+				PlaylistRoute,
+				{
+	        		createMarker: function(i, wp) {
+	            		var marker = new L.marker(wp.latLng, {
+	                		draggable: false
+	            		});
+	            		marker.on('click', onClick);
+	        			return marker;
+	        		}
+	    		}),
+			addWaypoints: false,
+			routeWhileDragging: false
+		});
 
+		map.addLayer(wayLayer);
+	}
 
 	map.addLayer(layer);
 
-	$(".leaflet-marker-icon").click(function () {
-		alert("test");
-		console.log("blop");
-		panelManage("open");
-		DZ.player.playAlbum(302127);
-	});
+	function onClick(e) {
+		//Get Latitude and Longitude of the element clicked
+		var Place = this.getLatLng();
+		playTrackByPlace(Place);
 
+	}
+
+	function setPlaylistRoute(Playlist){
+		var PlaylistRoute=[];
+		for(var i=0;i<(Playlist.length);i++){
+			PlaylistRoute.push(L.latLng(Playlist[i].places[0].coordLat,Playlist[i].places[0].coordLong));
+		}
+		// We close the route // WILL IMPROVE
+		PlaylistRoute.push(L.latLng(Playlist[0].places[0].coordLat,Playlist[0].places[0].coordLong));
+		return PlaylistRoute;
+	}
 	// INTRO SCROLL
 
 	$("#begin").click(function () {
@@ -79,5 +109,173 @@ $(document).ready(function() {
 	$("#menu-close").click(function (e) {
 		e.preventDefault();
 		$("#mainmenu").fadeOut();
+	});
+
+	//DEEZER PLAYER	
+
+	$("#controlers input").attr('disabled', true);
+	$("#slider_seek").click(function(evt,arg){
+		var left = evt.offsetX;
+		console.log(evt.offsetX, $(this).width(), evt.offsetX/$(this).width());
+		DZ.player.seek((evt.offsetX/$(this).width()) * 100);
+	});
+
+	function event_listener_append() {
+		/*var pre = document.getElementById('event_listener');
+		var line = [];
+		var min,sec;
+
+		for (var i = 0; i < arguments.length; i++) {
+			line.push(arguments[i]);
+		}
+		pre.innerHTML += line.join(' ') + "\n";*/
+
+		min=Math.floor(arguments[1]/60);
+		sec=Math.floor(arguments[1])%60;
+
+		if(sec<10) sec="0"+sec;
+
+		// Show position if only you got numeric value (time song) 
+		if (!isNaN(min)||!isNaN(sec))
+			$("#song-info .position").text(min+":"+sec);
+	}
+
+	function onPlayerLoaded() {
+		$("#controlers input").attr('disabled', false);
+		event_listener_append('player_loaded');
+		DZ.Event.subscribe('current_track', function(arg){
+			event_listener_append('current_track', arg.index, arg.track.title, arg.track.album.title);
+
+			$("#song-info .title").text(arg.track.title+" - "+arg.track.artist.name);
+
+			min=Math.floor(arg.track.duration/60);
+			sec=Math.floor(arg.track.duration%60);
+
+			if(sec<10) sec="0"+sec;
+			if (!isNaN(min)||!isNaN(sec))
+				$("#song-info .length").text(min+":"+sec);
+		});
+		DZ.Event.subscribe('player_position', function(arg){
+			event_listener_append('position', arg[0], arg[1]);
+			$("#slider_seek").find('.bar').css('width', (100*arg[0]/arg[1]) + '%');
+		});
+ 
+		DZ.Event.subscribe('track_end', function() {
+			event_listener_append('track_end');
+		});
+	}
+	
+	DZ.init({
+		appId  : '8',
+		channelUrl : 'http://developers.deezer.com/examples/channel.php',
+		player : {
+			onload : onPlayerLoaded
+		}
+	});
+
+	function playPlaylist(Playlist){
+		var playlistLink=[];
+
+		for (var i=0; i<Playlist.length; i++){
+			playlistLink.push(Playlist[i].link);
+		}
+
+		//console.log(playlistLink);
+		DZ.player.playTracks(playlistLink); 
+	}	
+	
+	function playTrackByPlace(Place){
+		for (var i=0; i<globalPlaylist.length; i++){
+			//console.log(Place.lng);
+			//console.log(globalPlaylist[i].places[0].coordLong);
+
+			if(globalPlaylist[i].places[0].coordLong==Place.lng){
+				switchTrack(i,DZ.player.getCurrentIndex());
+				//alert(globalPlaylist[i].title);
+			}
+		}
+	}
+
+	// TO IMPROVE
+	function switchTrack(id,position){
+
+		if (id>position){
+			for(var i=position;i<id;i++){
+				DZ.player.next();
+			}
+		}
+		
+		if(id<position){
+			for(var j=id;j<position;j++){
+				DZ.player.prev();
+			}
+		}
+	}
+
+	//MUSIS ENGINE MUSIC PART
+	var globalPlaylist=[];
+
+	window.loadPlaylist = function(tab,playlistName){
+		var playlist=[];
+		for (var i=0; i<tab.length; i++){
+			for (var j=0; j<tab[i].playlists.length; j++){
+				if (tab[i].playlists[j].name==playlistName){
+					playlist.push(tab[i]);
+				}
+			}
+		}
+
+		playPlaylist(playlist);
+
+		PlaylistRoute=setPlaylistRoute(playlist);
+		createRouting(PlaylistRoute);
+		
+		globalPlaylist=playlist;
+		//console.log(globalPlaylist);
+		return playlist;
+	};
+
+	//AJAX
+	function toAllParcours(){
+		$.ajax({
+	    	url : Routing.generate('team_musis_listallplaylist'), 
+	    	type : 'GET', 
+	    	dataType : 'html',
+
+			success: function(data) { 
+				$('#panel-content').html(data); 
+				$(".listAllParcours").click(function(e){
+					listAllParcours(this);			
+				});
+			}
+		});
+
+	}
+
+	function listAllParcours(elt){
+		var playlistName=elt.id;
+
+	    $.ajax({
+	    	url : Routing.generate('team_musis_parcours',{ 'name':playlistName }), 
+	    	type : 'GET', 
+	    	dataType : 'html',
+
+			success: function(data) { 
+				$('#panel-content').html(data); 
+				loadPlaylist(musics,playlistName); 
+
+				//Interface
+				$(".trackInfos").click(function(e){
+					switchTrack(this.id,DZ.player.getCurrentIndex());
+				});
+				$(".toAllParcours").click(function(e){
+					toAllParcours();			
+				});
+			}
+		});
+	}
+
+	$(".toAllParcours").click(function(){
+		toAllParcours();			
 	});
 });

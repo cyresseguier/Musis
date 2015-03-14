@@ -15,7 +15,7 @@ $menu-width:70px;
 	position:fixed;
 	right:0;
 	top:0;
-	z-index:1;
+	z-index:9998;
 	ul {
 		padding:0;
 		margin:0;
@@ -37,6 +37,13 @@ $menu-width:70px;
 			outline:none;
 			display:block;
 		}
+		&.play {
+			position:absolute;
+			bottom:20px;
+			left:-5px;
+			width:$menu-width;
+			border-bottom:1px solid #e1e1e1;
+		}
 	}
 	.menu {
 		border-right:0;
@@ -50,40 +57,146 @@ $menu-width:70px;
 		}
 	}
 	.fa-arrow-left {
-		@include transition(all .3s ease-in-out);
-		border:solid 1px red;
-		.active & {
-			border:solid 1px blue;
-			@include transform(rotate(-180deg));
-		}
+		@include transition(all 1s ease-in-out);
+	}
+	.active .fa-arrow-left {
+		@include transform(rotate(-180deg));
 	}
 }
 .panel-content {
 	width:100%;
+	margin-right:-100%;
 	height:auto;
+	position:absolute;
+	right:0;
+	top:0;
+	overflow: scroll;
 	@include box-sizing(border-box);
-	padding:15px 20px;
-	z-index:0;
+	//padding:15px 20px;
+	padding:0;
+	z-index:9997;
 	min-height:100%;
 	max-height:100%;
-	@include opacity(0);
 	background:#fff;
+	overflow:hidden;
 	@include transition(all 1s ease-in-out);
-	.unfolded & {
-		@include opacity(1);
-		visibility:visible;
+	&.unfolded {
+		margin-right:$menu-width;
+	}
+	&#mainmenu {
+		width:100%!important;
+		margin-right:-100%;
+		text-align:center;
+		&.unfolded {
+			margin-right:0;
+			padding-right:$menu-width;
+		}
+	}
+	#search {
+		margin-bottom:2em;
+		margin-top:15px;
+		border-bottom:solid 1px #999;
+		#search-input {
+			padding-left:1em;
+			font-size:2em;
+			color:#666;
+			background:none;
+			border:none;
+			outline:none;
+			display:block;
+			width:100%;
+			height:62px;
+		}
+	}
+	#slider_seek {
+		position:absolute!important;
+		bottom:80px;
+		width:100%;
+		border-radius:0;
+		.bar {
+			border-radius:0;
+			background:#d54c39;
+		}
+	}
+	#song-info {
+		position:absolute;
+		font-size:1.2em;
+		bottom:40px;
+		padding:0 1.2em;
+		@include box-sizing(border-box);
+		width:100%;
+		text-align:center;
+		.position {
+			float:left;
+		}
+		.length {
+			float:right;
+		}
+		&:after {
+			content:"";
+			display:block;
+			width:100%;
+			height:1px;
+			background-color:#e1e1e1;
+			position:absolute;
+			left:0;
+			bottom:-20px;
+		}
+	}
+	h2 {
+		text-align:center;
+		line-height:1.3em;
+		color:#555;
+	}
+	#trackList {
+		border:1px solid #555;
+		width:80%;
+		max-height:400px;
+		overflow-y:scroll;
+		margin:2em auto;
+		padding:1em;
+		li {
+			list-style-type:none;
+			cursor:pointer;
+			padding:.5em 0;
+			border-bottom:solid 1px #ddd;
+			&:last-child {
+				border:none;
+			}
+			.track-number {
+				margin-right:10px;	
+				font-weight:bold;
+			}
+			.track-title {
+				font-weight:bold;
+			}
+		}
+	}
+	#playlistListe {
+		
 	}
 }
+@media screen and (min-width:760px) {
+	.panel-content { width:50%; margin-right:-50%; }
+}
+@media screen and (min-width:1030px) {
+	.panel-content { width:33%; margin-right:-33%; }
+}
+
 #mainmenu {
+	display:table;
+	height:105%;
 	ul {
 		display:table-cell;
 		vertical-align:middle;
 		margin:0;
 		padding:0;
+		list-style-type:none;
 	}
 	li {
 		a {
 			font:400 2.4em/1.6em $text;
+			@include transition(all .5s ease);
 			text: {
 				transform:uppercase;
 				decoration:none;
@@ -95,52 +208,33 @@ $menu-width:70px;
 				padding:0 1em;
 			}
 			&.accueil {
-				color:#c1b458;
-				@include transition(all .5s ease);
+				color:#3f7079;
 				&:hover {
-					border-color:#c1b458;
+					border-color:#3f7079;
 				}
 			}
 			&.playlist {
-				color:#213f42;
-				@include transition(all .5s ease);
+				color:#a85044;
 				&:hover {
-					border-color:#213f42;
+					border-color:#a85044;
 				}
 			}
 			&.parcours {
-				color:#a85044;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#a85044;
-				}
-			}
-			&.artistes {
-				color:#824e6c;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#824e6c;
-				}
-			}
-			&.apropos {
-				color:#826244;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#a85044;
-				}
-			}
-			&.artistes {
-				color:#824e6c;
-				@include transition(all .5s ease);
-				&:hover {
-					border-color:#824e6c;
-				}
-			}
-			&.apropos {
-				color:#826244;
-				@include transition(all .5s ease);
+				color:#c1b458;
 				&:hover {
 					border-color:#826244;
+				}
+			}
+			&.artistes {
+				color:#826244;
+				&:hover {
+					border-color:#826244;
+				}
+			}
+			&.apropos {
+				color:#824e6c;
+				&:hover {
+					border-color:#824e6c;
 				}
 			}
 		}
