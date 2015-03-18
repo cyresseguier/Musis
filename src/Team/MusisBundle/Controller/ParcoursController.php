@@ -18,7 +18,7 @@ class ParcoursController extends Controller
             ->findBy(array('playlist' => $playlist_id));
     
         return $this->render('TeamMusisBundle:Musis:parcours.html.twig',array(
-                'playlist_name'=>$name, 'playlist'=>$musics
+                'playlistInfo'=>$playlist, 'playlist'=>$musics
             ));
     }
 }

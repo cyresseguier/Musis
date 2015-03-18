@@ -8,10 +8,13 @@
 		</div>
 	</div>
 
-	<h2>{{playlist_name}}</h2>
+	<h2>{{playlistInfo.name}}</h2>
 
+	<blockquote id="citation">
+	</blockquote>
+	<div class="author"></div>
 	<p class="playlist-description">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet metus in iaculis congue. Vivamus placerat est massa, at lacinia mi rutrum sit amet. Donec facilisis auctor nibh eget posuere. Sed interdum sodales libero nec aliquam. Donec consectetur sit amet lectus eget malesuada.
+		{{playlistInfo.presentation}}
 	</p>
 
 	<div id="trackListing">
@@ -27,7 +30,7 @@
 
 		</ul>
 	</div>
-	<input type="button" class="toAllParcours" value="Retour à tous les parcours"/>
+	<a class="toAllParcours" href="#_">&gt; Retour à tous les parcours</a>
 
 	<div id="slider_seek" class="progressbarplay" style="">
 		<div class="bar" style="width: 0%;"></div>

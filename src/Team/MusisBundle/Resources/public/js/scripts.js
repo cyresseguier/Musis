@@ -145,9 +145,10 @@ $(document).ready(function() {
 		event_listener_append('player_loaded');
 		DZ.Event.subscribe('current_track', function(arg){
 			event_listener_append('current_track', arg.index, arg.track.title, arg.track.album.title);
+			$(".trackInfos").removeClass("active");
+			$("#trackListing").find("li").eq(arg.index).addClass("active");
 
 			$("#song-info .title").text(arg.track.title+" - "+arg.track.artist.name);
-
 			min=Math.floor(arg.track.duration/60);
 			sec=Math.floor(arg.track.duration%60);
 
@@ -159,10 +160,6 @@ $(document).ready(function() {
 			event_listener_append('position', arg[0], arg[1]);
 			$("#slider_seek").find('.bar').css('width', (100*arg[0]/arg[1]) + '%');
 		});
- 
-		DZ.Event.subscribe('track_end', function() {
-			event_listener_append('track_end');
-		});
 	}
 	
 	DZ.init({
@@ -173,15 +170,22 @@ $(document).ready(function() {
 		}
 	});
 
+	
+	/*function callAPIforTime (elt){
+		DZ.api('/track/'+elt+'', function(response){
+			addtime(response.duration);
+			});	
+	}*/
+	
 	function playPlaylist(Playlist){
 		var playlistLink=[];
+		
 
 		for (var i=0; i<Playlist.length; i++){
 			playlistLink.push(Playlist[i].link);
 		}
-
-		//console.log(playlistLink);
 		DZ.player.playTracks(playlistLink); 
+
 	}	
 	
 	function playTrackByPlace(Place){
@@ -198,7 +202,9 @@ $(document).ready(function() {
 
 	// TO IMPROVE
 	function switchTrack(id,position){
-
+		$(".trackInfos").removeClass("active");
+		$("#trackListing").find("li").eq(id).addClass("active");
+		
 		if (id>position){
 			for(var i=position;i<id;i++){
 				DZ.player.next();
@@ -217,6 +223,8 @@ $(document).ready(function() {
 
 	window.loadPlaylist = function(tab,playlistName){
 		var playlist=[];
+		var citation;
+
 		for (var i=0; i<tab.length; i++){
 			for (var j=0; j<tab[i].playlists.length; j++){
 				if (tab[i].playlists[j].name==playlistName){
@@ -229,9 +237,15 @@ $(document).ready(function() {
 
 		PlaylistRoute=setPlaylistRoute(playlist);
 		createRouting(PlaylistRoute);
-		
+
 		globalPlaylist=playlist;
-		//console.log(globalPlaylist);
+	
+		citation = playlist[Math.floor(Math.random()*playlist.length)];
+
+		$("#trackListing").find("li").eq(0).addClass("active");
+		$("#citation").html(citation.lyrics);
+		$(".author").html('- '+citation.artists[0].name);
+
 		return playlist;
 	};
 
@@ -272,6 +286,7 @@ $(document).ready(function() {
 				//Interface
 				$(".trackInfos").click(function(e){
 					switchTrack(this.id,DZ.player.getCurrentIndex());
+					
 				});
 				$(".toAllParcours").click(function(e){
 					toAllParcours();			

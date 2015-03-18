@@ -3,9 +3,11 @@
 	<div class="elementContainer">
 		{% for playlist in playlists %}
 			<div class="listAllParcours" id="{{playlist.name}}">
-			<!--<input type="button" class="listAllParcours" id="{{playlist.name}}" value="{{playlist.name}}"/>-->
-			<h2>{{playlist.name}}</h2>
-			<h3>{{playlist.presentation}}</h3>
+				<div class="wrapper">
+					<!--<input type="button" class="listAllParcours" id="{{playlist.name}}" value="{{playlist.name}}"/>-->
+					<h2>{{playlist.name}}</h2>
+					<h3>{{playlist.presentation}}</h3>
+				</div>
 			</div>
 		{% endfor %}
 	</div>
