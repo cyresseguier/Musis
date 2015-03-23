@@ -2,6 +2,12 @@ team_musis_homepage:
     path:     /
     defaults: { _controller: TeamMusisBundle:Default:index }
 
+team_musis_welcome:
+    path:   /Home/
+    defaults: { _controller: TeamMusisBundle:Home:index }
+    options:
+        expose: true
+
 team_musis_listallplaylist:
     path:     /Playlists/
     defaults: { _controller: TeamMusisBundle:Playlists:index }

@@ -1,5 +1,22 @@
 $(document).ready(function() {
 
+	// ENTER
+
+	$(".main-menu a").click(function() {
+		$("#intro").addClass("disabled");
+		welcome();
+	});
+
+	// INTRO SCROLL
+
+	$("#begin").click(function () {
+		$("#intro").addClass("disabled");
+		$(".side-panel").addClass("visible");
+		welcome();
+		panelManage("open","#panel-content");
+
+	});
+
 	// SIDE PANEL
 
 	function panelManage(action, target) {
@@ -65,11 +82,18 @@ $(document).ready(function() {
 	                		draggable: false
 	            		});
 	            		marker.on('click', onClick);
+	            		marker.on('mouseover',Hover);
+	            		marker.on('mouseout',onOut);
 	        			return marker;
 	        		}
 	    		}),
 			addWaypoints: false,
-			routeWhileDragging: false
+			routeWhileDragging: false,
+			lineOptions: {
+	            styles: [
+	            {color: '#3F7079', opacity: 1,weight: 1}
+	            ]
+           }
 		});
 
 		map.addLayer(wayLayer);
@@ -79,9 +103,27 @@ $(document).ready(function() {
 
 	function onClick(e) {
 		//Get Latitude and Longitude of the element clicked
-		var Place = this.getLatLng();
-		playTrackByPlace(Place);
+		var place = this.getLatLng();
+		playTrackByPlace(place);
 
+	}
+
+	function Hover(e) {
+		var place = this.getLatLng();
+		var text = popPlace(place);
+		this.bindPopup(text.title+' - '+text.artists[0].name).openPopup();
+	}
+
+	function onOut(e) {
+		this.closePopup();
+	}
+
+	function popPlace(Place){
+		for (var i=0; i<globalPlaylist.length; i++){
+			if(globalPlaylist[i].places[0].coordLong==Place.lng){
+				return globalPlaylist[i];
+			}
+		}
 	}
 
 	function setPlaylistRoute(Playlist){
@@ -89,16 +131,10 @@ $(document).ready(function() {
 		for(var i=0;i<(Playlist.length);i++){
 			PlaylistRoute.push(L.latLng(Playlist[i].places[0].coordLat,Playlist[i].places[0].coordLong));
 		}
-		// We close the route // WILL IMPROVE
 		PlaylistRoute.push(L.latLng(Playlist[0].places[0].coordLat,Playlist[0].places[0].coordLong));
 		return PlaylistRoute;
 	}
-	// INTRO SCROLL
 
-	$("#begin").click(function () {
-		$("#intro").addClass("disabled");
-		$(".side-panel").addClass("visible");
-	});
 
 	//FULLSCREEN MENU
 
@@ -121,14 +157,6 @@ $(document).ready(function() {
 	});
 
 	function event_listener_append() {
-		/*var pre = document.getElementById('event_listener');
-		var line = [];
-		var min,sec;
-
-		for (var i = 0; i < arguments.length; i++) {
-			line.push(arguments[i]);
-		}
-		pre.innerHTML += line.join(' ') + "\n";*/
 
 		min=Math.floor(arguments[1]/60);
 		sec=Math.floor(arguments[1])%60;
@@ -170,13 +198,6 @@ $(document).ready(function() {
 		}
 	});
 
-	
-	/*function callAPIforTime (elt){
-		DZ.api('/track/'+elt+'', function(response){
-			addtime(response.duration);
-			});	
-	}*/
-	
 	function playPlaylist(Playlist){
 		var playlistLink=[];
 		
@@ -190,12 +211,8 @@ $(document).ready(function() {
 	
 	function playTrackByPlace(Place){
 		for (var i=0; i<globalPlaylist.length; i++){
-			//console.log(Place.lng);
-			//console.log(globalPlaylist[i].places[0].coordLong);
-
 			if(globalPlaylist[i].places[0].coordLong==Place.lng){
 				switchTrack(i,DZ.player.getCurrentIndex());
-				//alert(globalPlaylist[i].title);
 			}
 		}
 	}
@@ -222,6 +239,7 @@ $(document).ready(function() {
 	var globalPlaylist=[];
 
 	window.loadPlaylist = function(tab,playlistName){
+
 		var playlist=[];
 		var citation;
 
@@ -250,6 +268,21 @@ $(document).ready(function() {
 	};
 
 	//AJAX
+	function welcome(){
+		$.ajax({
+	    	url : Routing.generate('team_musis_welcome'), 
+	    	type : 'GET', 
+	    	dataType : 'html',
+
+			success: function(data) { 
+				$('#panel-content').html(data);
+				$(".toAllParcours").click(function(e){
+					toAllParcours();			
+				});
+			}
+		});
+	}
+
 	function toAllParcours(){
 		$.ajax({
 	    	url : Routing.generate('team_musis_listallplaylist'), 
@@ -295,8 +328,11 @@ $(document).ready(function() {
 		});
 	}
 
-	$(".toAllParcours").click(function(){
-		toAllParcours();			
+	//NAVIGATION
+	$('#mainmenu .accueil').click(function(e){
+		welcome();
+		panelManage("close","#searchElement");
+		panelManage("open","#panel-content");
 	});
 });
 

@@ -1,7 +1,7 @@
 #player {
 	position:fixed;
-	width:calc(100% - #{$menu-width});
-	bottom:20px;
+	//width:calc(100% - #{$menu-width});
+	bottom:29px;
 	background:#fff;
 	height:77px;
 	#slider_seek {
@@ -15,8 +15,8 @@
 	#song-info {
 		font-size:1.2em;
 		padding:0 1.2em;
-		@include box-sizing(border-box);
 		width:100%;
+		@include box-sizing(border-box);
 		text-align:center;
 		.position {
 			float:left;

@@ -22,13 +22,13 @@ $menu-width:70px;
 	}
 	li {
 		display:block;
-		padding	:0 6px;
+		padding:0 6px;
 		border-top:1px solid #e1e1e1;
-		&:first-child {
-			border-top:none;
+		&.search {
+			border-bottom:1px solid #e1e1e1;
 		}
-		&:last-child {
-			border-bottom:none;
+		&.navicon {
+			border-bottom:1px solid #e1e1e1;
 		}
 		a {
 			padding:1.2em 0;
@@ -36,14 +36,30 @@ $menu-width:70px;
 			color:#757575;
 			outline:none;
 			display:block;
+			&.fa-play,&.fa-pause {
+				color:#fff;
+				background:#658d94;
+			}
 		}
 		&.play {
 			position:absolute;
-			bottom:20px;
+			bottom:30px;
 			left:-5px;
 			width:$menu-width;
 			border-bottom:1px solid #e1e1e1;
 		}
+		&.arrow {
+			margin-top:25vh;
+		}
+	}
+	#musis {
+		position:absolute;
+		right:11px;
+		bottom:10px;
+		background:image-url('musis-text.jpg');
+		width:image-width('musis-text.jpg');
+		height:image-height('musis-text.jpg');
+		text-indent:-9999px;
 	}
 	.menu {
 		border-right:0;
@@ -98,17 +114,21 @@ $menu-width:70px;
 	#search {
 		margin-bottom:2em;
 		margin-top:15px;
+		padding:0 1em;
+		border-bottom:solid 1px #999;
+		@include box-sizing(border-box);
 		#search-input {
-			padding-left:1em;
-			font-size:1.7em;
-			color:#666;
+			font-size:1.6em;
+			color:#222;
+			font-weight:200;
 			background:none;
 			border:none;
-			border-bottom:solid 1px #999;
+			border-bottom:solid 1px #ddd;
+			margin-bottom:.8em;
 			outline:none;
 			display:block;
 			width:100%;
-			height:62px;
+			height:44px;
 		}
 	}
 	h2 {
@@ -223,7 +243,7 @@ $menu-width:70px;
 			font-style:italic;
 		}
 	}
-	.toAllParcours {
+	a.toAllParcours {
 		color:#a85044;
 		font-style:italic;
 		text-align:center;
@@ -232,10 +252,10 @@ $menu-width:70px;
 	}
 }
 @media screen and (min-width:760px) {
-	.panel-content { width:50%; margin-right:-50%; }
+	.panel-content,#player { width:50%; margin-right:-50%; }
 }
 @media screen and (min-width:1030px) {
-	.panel-content { width:33%; margin-right:-33%; }
+	.panel-content,#player { width:33%; margin-right:-33%; }
 }
 
 #mainmenu {
@@ -277,7 +297,7 @@ $menu-width:70px;
 			&.parcours {
 				color:#c1b458;
 				&:hover {
-					border-color:#826244;
+					border-color:#c1b458;
 				}
 			}
 			&.artistes {
