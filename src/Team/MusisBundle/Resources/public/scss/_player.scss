@@ -1,6 +1,6 @@
 #player {
 	position:fixed;
-	//width:calc(100% - #{$menu-width});
+	width:calc(100% - #{$menu-width});
 	bottom:29px;
 	background:#fff;
 	height:77px;
@@ -23,6 +23,9 @@
 		}
 		.length {
 			float:right;
+		}
+		.title {
+			padding:0 2em;
 		}
 		&:after {
 			content:"";

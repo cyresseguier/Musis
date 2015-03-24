@@ -16,7 +16,7 @@ class ParcoursController extends Controller
         $musics=$orm
             ->getRepository('TeamMusisBundle:MusicPlaylist')
             ->findBy(array('playlist' => $playlist_id));
-    
+            
         return $this->render('TeamMusisBundle:Musis:parcours.html.twig',array(
                 'playlistInfo'=>$playlist, 'playlist'=>$musics
             ));

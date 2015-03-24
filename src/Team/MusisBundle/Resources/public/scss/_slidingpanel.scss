@@ -13,9 +13,13 @@ $menu-width:70px;
 	color:#757575;
 	font-size:22px;
 	position:fixed;
-	right:0;
+	@include transition(all .3s ease-in-out);
+	right:-#{$menu-width};
 	top:0;
 	z-index:9998;
+	&.active {
+		right:0;
+	}
 	ul {
 		padding:0;
 		margin:0;
@@ -143,7 +147,7 @@ $menu-width:70px;
 	#trackListing {
 		position:relative;
 		width:246px;
-		margin:2em auto;
+		margin:2em auto 120px;
 		&:before {
 			content:"";
 			display:block;
@@ -252,10 +256,10 @@ $menu-width:70px;
 	}
 }
 @media screen and (min-width:760px) {
-	.panel-content,#player { width:50%; margin-right:-50%; }
+	.panel-content,#player { width:50%!important; margin-right:-50%; }
 }
 @media screen and (min-width:1030px) {
-	.panel-content,#player { width:33%; margin-right:-33%; }
+	.panel-content,#player { width:33%!important; margin-right:-33%; }
 }
 
 #mainmenu {

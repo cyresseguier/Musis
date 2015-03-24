@@ -317,30 +317,38 @@ summary {
   color: #757575;
   font-size: 22px;
   position: fixed;
-  right: 0;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  right: -70px;
   top: 0;
   z-index: 9998;
 }
-/* line 19, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 20, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+.panel-menu.active {
+  right: 0;
+}
+/* line 23, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu ul {
   padding: 0;
   margin: 0;
 }
-/* line 23, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 27, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu li {
   display: block;
   padding: 0 6px;
   border-top: 1px solid #e1e1e1;
 }
-/* line 27, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 31, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu li.search {
   border-bottom: 1px solid #e1e1e1;
 }
-/* line 30, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 34, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu li.navicon {
   border-bottom: 1px solid #e1e1e1;
 }
-/* line 33, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 37, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu li a {
   padding: 1.2em 0;
   text-decoration: none;
@@ -348,12 +356,12 @@ summary {
   outline: none;
   display: block;
 }
-/* line 39, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 43, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu li a.fa-play, .panel-menu li a.fa-pause {
   color: #fff;
   background: #658d94;
 }
-/* line 44, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 48, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu li.play {
   position: absolute;
   bottom: 30px;
@@ -361,21 +369,21 @@ summary {
   width: 70px;
   border-bottom: 1px solid #e1e1e1;
 }
-/* line 51, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 55, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu li.arrow {
   margin-top: 25vh;
 }
-/* line 55, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 59, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu #musis {
   position: absolute;
   right: 11px;
   bottom: 10px;
-  background: url('../img/musis-text.jpg?1427120491');
+  background: url('../img/musis-text.jpg?1427148451');
   width: 47px;
   height: 11px;
   text-indent: -9999px;
 }
-/* line 64, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 68, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu .menu {
   border-right: 0;
   -moz-transition: all 0.3s ease;
@@ -383,23 +391,23 @@ summary {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-/* line 67, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 71, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu .menu:hover {
   border-right: 6px solid #a85044;
 }
-/* line 70, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 74, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu .menu.active {
   border-right: 0;
   border-left: 6px solid #a85044;
 }
-/* line 75, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 79, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu .fa-arrow-left {
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
-/* line 78, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 82, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-menu .active .fa-arrow-left {
   -moz-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
@@ -407,7 +415,7 @@ summary {
   transform: rotate(-180deg);
 }
 
-/* line 82, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 86, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content {
   margin-right: -100%;
   height: auto;
@@ -421,7 +429,7 @@ summary {
   color: #767676;
   padding: 0;
   padding-bottom: 77px;
-  background: #fff url('../img/background-stripes.jpg?1427120491') center 30% no-repeat;
+  background: #fff url('../img/background-stripes.jpg?1427148451') center 30% no-repeat;
   z-index: 9997;
   min-height: 100%;
   max-height: 100%;
@@ -436,22 +444,22 @@ summary {
   -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
-/* line 102, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 106, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content.unfolded {
   margin-right: 70px;
 }
-/* line 105, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 109, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content#mainmenu {
   width: 100% !important;
   margin-right: -100%;
   text-align: center;
 }
-/* line 109, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 113, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content#mainmenu.unfolded {
   margin-right: 0;
   padding-right: 70px;
 }
-/* line 114, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 118, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #search {
   margin-bottom: 2em;
   margin-top: 15px;
@@ -461,7 +469,7 @@ summary {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 120, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 124, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #search #search-input {
   font-size: 1.6em;
   color: #222;
@@ -475,9 +483,9 @@ summary {
   width: 100%;
   height: 44px;
 }
-/* line 134, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 138, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content h2 {
-  background: url('../img/separateur.jpg?1427120491') center bottom no-repeat;
+  background: url('../img/separateur.jpg?1427148451') center bottom no-repeat;
   font-size: 1.7em;
   text-align: center;
   line-height: 1.1em;
@@ -485,35 +493,35 @@ summary {
   margin-bottom: 0.2em;
   color: #555;
 }
-/* line 143, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 147, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackListing {
   position: relative;
   width: 246px;
-  margin: 2em auto;
+  margin: 2em auto 120px;
 }
-/* line 147, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 151, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackListing:before {
   content: "";
   display: block;
-  background: url('../img/panel-top.jpg?1427120491');
+  background: url('../img/panel-top.jpg?1427148451');
   width: 245px;
   height: 6px;
   position: absolute;
   top: 0;
   left: 0;
 }
-/* line 157, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 161, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackListing:after {
   content: "";
   display: block;
-  background: url('../img/panel-bottom.jpg?1427120491');
+  background: url('../img/panel-bottom.jpg?1427148451');
   width: 245px;
   height: 6px;
   position: absolute;
   bottom: 0;
   left: 0;
 }
-/* line 168, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 172, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackList {
   border-left: 1px solid #c8c8c8;
   border-right: 1px solid #c8c8c8;
@@ -526,22 +534,22 @@ summary {
   overflow-x: hidden;
   padding: 1em 0;
 }
-/* line 177, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 181, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackList li {
   list-style-type: none;
   cursor: pointer;
   padding: .5em 1em;
   border-bottom: solid 1px #ddd;
 }
-/* line 182, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 186, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackList li:last-child {
   border: none;
 }
-/* line 185, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 189, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackList li.active {
   border-left: 3px solid #a85044;
 }
-/* line 188, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 192, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackList li .track-number {
   margin-right: 10px;
   font-weight: bold;
@@ -550,25 +558,25 @@ summary {
   float: left;
   height: 3em;
 }
-/* line 196, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 200, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackList li .track-title {
   font-weight: bold;
 }
-/* line 199, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 203, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content #trackList li .track-artist {
   font-style: italic;
 }
-/* line 204, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 208, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content .playlist-top {
   margin-bottom: 1em;
   min-height: 26px;
-  background: url('../img/top-pin.jpg?1427120491') center center no-repeat;
+  background: url('../img/top-pin.jpg?1427148451') center center no-repeat;
   color: #a85044;
   text-align: center;
   text-decoration: underline;
   text-transform: uppercase;
 }
-/* line 214, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 218, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content .playlist-top .playlist-length {
   text-align: right;
   width: 50%;
@@ -577,13 +585,13 @@ summary {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 221, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 225, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content .playlist-description {
   font-size: .9em;
   padding: 0 4em;
   text-align: justify;
 }
-/* line 226, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 230, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content blockquote {
   padding: 0 3em;
   color: #a85044;
@@ -592,22 +600,22 @@ summary {
   text-align: center;
   padding: 1em 1em 0;
 }
-/* line 233, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 237, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content blockquote:before {
   content: "«";
 }
-/* line 236, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 240, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content blockquote:after {
   content: "»";
 }
-/* line 239, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 243, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content blockquote + .author {
   text-align: right;
   padding: .9em 5em 1em;
   color: #a85044;
   font-style: italic;
 }
-/* line 246, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 250, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 .panel-content a.toAllParcours {
   color: #a85044;
   font-style: italic;
@@ -617,25 +625,25 @@ summary {
 }
 
 @media screen and (min-width: 760px) {
-  /* line 255, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+  /* line 259, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
   .panel-content, #player {
-    width: 50%;
+    width: 50% !important;
     margin-right: -50%;
   }
 }
 @media screen and (min-width: 1030px) {
-  /* line 258, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+  /* line 262, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
   .panel-content, #player {
-    width: 33%;
+    width: 33% !important;
     margin-right: -33%;
   }
 }
-/* line 261, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 265, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu {
   display: table;
   height: 105%;
 }
-/* line 264, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 268, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu ul {
   display: table-cell;
   vertical-align: middle;
@@ -643,7 +651,7 @@ summary {
   padding: 0;
   list-style-type: none;
 }
-/* line 272, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 276, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a {
   font: 400 2.4em/1.6em "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -moz-transition: all 0.5s ease;
@@ -653,50 +661,50 @@ summary {
   text-transform: uppercase;
   text-decoration: none;
 }
-/* line 279, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 283, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a:hover {
   border: solid 3px;
   border-top-width: 0;
   border-bottom-width: 0;
   padding: 0 1em;
 }
-/* line 285, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 289, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.accueil {
   color: #3f7079;
 }
-/* line 287, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 291, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.accueil:hover {
   border-color: #3f7079;
 }
-/* line 291, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 295, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.playlist {
   color: #a85044;
 }
-/* line 293, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 297, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.playlist:hover {
   border-color: #a85044;
 }
-/* line 297, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 301, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.parcours {
   color: #c1b458;
 }
-/* line 299, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 303, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.parcours:hover {
   border-color: #c1b458;
 }
-/* line 303, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 307, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.artistes {
   color: #826244;
 }
-/* line 305, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 309, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.artistes:hover {
   border-color: #826244;
 }
-/* line 309, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 313, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.apropos {
   color: #824e6c;
 }
-/* line 311, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
+/* line 315, ../../../src/Team/MusisBundle/Resources/public/scss/_slidingpanel.scss */
 #mainmenu li a.apropos:hover {
   border-color: #824e6c;
 }
@@ -704,6 +712,7 @@ summary {
 /* line 1, ../../../src/Team/MusisBundle/Resources/public/scss/_player.scss */
 #player {
   position: fixed;
+  width: calc(100% - 70px);
   bottom: 29px;
   background: #fff;
   height: 77px;
@@ -737,6 +746,10 @@ summary {
   float: right;
 }
 /* line 27, ../../../src/Team/MusisBundle/Resources/public/scss/_player.scss */
+#player #song-info .title {
+  padding: 0 2em;
+}
+/* line 30, ../../../src/Team/MusisBundle/Resources/public/scss/_player.scss */
 #player #song-info:after {
   content: "";
   display: block;
@@ -747,7 +760,7 @@ summary {
   left: 0;
   bottom: 0;
 }
-/* line 38, ../../../src/Team/MusisBundle/Resources/public/scss/_player.scss */
+/* line 41, ../../../src/Team/MusisBundle/Resources/public/scss/_player.scss */
 #player .progressbarplay {
   cursor: pointer;
   overflow: hidden;
@@ -755,7 +768,7 @@ summary {
   border-top: 1px solid #888;
   margin-bottom: 22px;
 }
-/* line 44, ../../../src/Team/MusisBundle/Resources/public/scss/_player.scss */
+/* line 47, ../../../src/Team/MusisBundle/Resources/public/scss/_player.scss */
 #player .progressbarplay .bar {
   cursor: pointer;
   background: #4496C6;
@@ -1696,7 +1709,7 @@ summary {
 #searchElement .listAllParcours:before {
   content: "";
   display: block;
-  background: url('../img/panel-top.jpg?1427120491');
+  background: url('../img/panel-top.jpg?1427148451');
   width: 245px;
   height: 6px;
   position: absolute;
@@ -1707,7 +1720,7 @@ summary {
 #searchElement .listAllParcours:after {
   content: "";
   display: block;
-  background: url('../img/panel-bottom.jpg?1427120491');
+  background: url('../img/panel-bottom.jpg?1427148451');
   width: 245px;
   height: 6px;
   position: absolute;
@@ -1755,7 +1768,7 @@ summary {
 .welcome .elementContainer:before {
   content: "";
   display: block;
-  background: url('../img/panel-top.jpg?1427120491');
+  background: url('../img/panel-top.jpg?1427148451');
   width: 245px;
   height: 6px;
   position: absolute;
@@ -1766,7 +1779,7 @@ summary {
 .welcome .elementContainer:after {
   content: "";
   display: block;
-  background: url('../img/panel-bottom.jpg?1427120491');
+  background: url('../img/panel-bottom.jpg?1427148451');
   width: 245px;
   height: 6px;
   position: absolute;
@@ -1793,7 +1806,7 @@ summary {
 /* line 42, ../../../src/Team/MusisBundle/Resources/public/scss/_welcomepanel.scss */
 .welcome .welcomeMap {
   height: 250px;
-  background: url('../img/welcome-map.png?1427120491') no-repeat center center;
+  background: url('../img/welcome-map.png?1427148451') no-repeat center center;
 }
 
 /* line 20, ../../../src/Team/MusisBundle/Resources/public/scss/style.scss */

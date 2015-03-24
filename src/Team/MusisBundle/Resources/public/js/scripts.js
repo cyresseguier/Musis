@@ -14,6 +14,7 @@ $(document).ready(function() {
 		$(".side-panel").addClass("visible");
 		welcome();
 		panelManage("open","#panel-content");
+		$("nav.panel-menu").addClass("active");
 
 	});
 
@@ -267,7 +268,8 @@ $(document).ready(function() {
 		return playlist;
 	};
 
-	//AJAX
+	
+
 	function welcome(){
 		$.ajax({
 	    	url : Routing.generate('team_musis_welcome'), 
@@ -294,15 +296,23 @@ $(document).ready(function() {
 				panelManage("close","#panel-content");
 				panelManage("open","#searchElement");
 				$(".listAllParcours").click(function(e){
-					listAllParcours(this);			
+					listAllParcours(this,0);			
 				});
 			}
 		});
 
 	}
 
-	function listAllParcours(elt){
-		var playlistName=elt.id;
+	function listAllParcours(elt,rd){
+		var playlistName;
+		if (rd=='0'){
+			playlistName=elt.id;
+		}
+		// WIll Be implemented
+		else if(rd=='1'){
+			var ls=$('.listAllParcours h2');
+			playlistName=ls[(Math.floor(Math.random()*ls.length))].id;
+		}
 
 	    $.ajax({
 	    	url : Routing.generate('team_musis_parcours',{ 'name':playlistName }), 
@@ -328,11 +338,32 @@ $(document).ready(function() {
 		});
 	}
 
+
 	//NAVIGATION
 	$('#mainmenu .accueil').click(function(e){
 		welcome();
 		panelManage("close","#searchElement");
 		panelManage("open","#panel-content");
+	});
+
+	$('#mainmenu .parcours').click(function(e){
+		toAllParcours();
+	});
+
+	$('#mainmenu .playlist').click(function(e){
+		listAllParcours(null,1);
+	});
+
+	//EASTER EGG
+	var k = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65], n = 0;
+	$(document).keydown(function (e) {
+	    if (e.keyCode === k[n++]) {
+	        if (n === k.length) {
+	            map.panTo([53.538324, -9.887381]);
+	            DZ.player.playAlbum(100221, 0, 35);
+	            return !1;
+	        }
+	    } else k = 0;
 	});
 });
 
